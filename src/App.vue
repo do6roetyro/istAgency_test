@@ -1,20 +1,20 @@
 <template lang="pug">
     div#app
-      Catalog
+      Header
     </template>
 
 <script>
-import Catalog from "./components/Catalog.vue";
+import Header from "./components/Header/Header.vue";
 
 export default {
   components: {
-    Catalog,
+    Header,
   },
 };
 </script>
 
 <style>
-@font-face {
+/* @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 300;
@@ -65,4 +65,16 @@ body {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0
+} */
 </style>
