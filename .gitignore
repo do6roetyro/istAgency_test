@@ -1,0 +1,33 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+
+# Compiled output
+dist/
+build/
+
+# Public directory
+public/
+
+# Babel and ESLint config
+babel.config.js
+.eslintcache
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# MacOS
+.DS_Store
+
+# GitHub
+/.github/
+
+# Webpack output
+webpack.config.js
+
+# Lock files
+package-lock.json
