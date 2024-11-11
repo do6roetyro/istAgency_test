@@ -2,7 +2,7 @@
   header.header
     div.header__wrapper.wrapper
       div.header__container
-        Logo.header__logo.main-logo
+        Logo.header__logo
         Navigation(:isDropdown="isDropdown").header__navigation
       div.header__container 
         ContactInfo.header__contact-info

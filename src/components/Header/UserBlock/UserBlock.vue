@@ -1,5 +1,5 @@
 <template lang="pug">
-    ul.user-block__list
+    div.user-block
       Search.user-block__item.search
       User.user-block__item.user
       Favorites.user-block__item.favourites

@@ -1,10 +1,10 @@
 <template lang="pug">
     nav(:class="{ dropdown: isDropdown }").navigation
-      NavItem(name="Продукты").navigation__item
-      NavItem(name="Цвета").navigation__item
-      NavItem(name="Вдохновение").navigation__item
-      NavItem(name="Советы").navigation__item
-      NavItem(name="Найти магазин").navigation__item
+      NavItem(name="Продукты")
+      NavItem(name="Цвета")
+      NavItem(name="Вдохновение")
+      NavItem(name="Советы")
+      NavItem(name="Найти магазин")
     </template>
     
     <script>
