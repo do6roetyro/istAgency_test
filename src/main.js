@@ -7,6 +7,7 @@ import './assets/icons/heart.svg';
 import './assets/icons/profile.svg';
 import './assets/icons/search.svg';
 import "./styles/global.css";
+import heroImage from './assets/images/hero_slide.webp';
 
 const app = createApp(App);
 const pinia = createPinia();

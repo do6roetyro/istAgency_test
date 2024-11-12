@@ -48,60 +48,31 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[contenthash].[ext]",
-              outputPath: "assets/images",
-            },
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              disable: process.env.NODE_ENV === "development",
-              mozjpeg: {
-                progressive: true,
-                quality: 75,
-              },
-              optipng: {
-                enabled: true,
-              },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              webp: {
-                quality: 75,
-              },
-            },
-          },
-        ],
+        test: /\.(png|jpg|jpeg|gif|webp)$/i,
+        include: path.resolve(__dirname, "src/assets/images"),
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/[name].[contenthash][ext]",
+        },
       },
-      {
-        test: /\.(png|jpg|jpeg)$/, // Для создания WebP копий только для этих форматов
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[contenthash].webp",
-              outputPath: "assets/images",
-            },
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              webp: {
-                quality: 75,
+      // Правило для оптимизации изображений только в production
+      ...(process.env.NODE_ENV === "production"
+        ? [{
+            test: /\.(png|jpg|jpeg|gif)$/i,
+            include: path.resolve(__dirname, "src/assets/images"),
+            use: [
+              {
+                loader: "image-webpack-loader",
+                options: {
+                  mozjpeg: { progressive: true, quality: 75 },
+                  optipng: { enabled: true },
+                  pngquant: { quality: [0.65, 0.9], speed: 4 },
+                  gifsicle: { interlaced: false },
+                },
               },
-            },
-          },
-        ],
-      },
+            ],
+          }]
+        : []),
       {
         test: /\.svg$/,
         loader: "svg-sprite-loader",
@@ -110,17 +81,12 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[contenthash].[ext]",
-              outputPath: "assets/fonts",
-            },
-          },
-        ],
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        include: path.resolve(__dirname, "src/assets/fonts"),
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[name].[contenthash][ext]",
+        },
       },
     ],
   },
@@ -153,7 +119,7 @@ module.exports = {
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "src"),
     },
     compress: true,
     port: 8080,

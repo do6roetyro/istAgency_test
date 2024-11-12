@@ -29,7 +29,7 @@ export default {
       isDesktop: window.innerWidth >= 768,
       slides: [
         {
-          image: require("../../../assets/images/hero_slide.jpg"),
+          image: ("../../assets/images/hero_slide.webp"),
           width: "1920",
           height: "560",
           alt: "Стена изумрудного цвета",
@@ -38,7 +38,7 @@ export default {
             "Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!",
         },
         {
-          image: require("../../../assets/images/hero_slide.jpg"),
+          image: ("../../assets/images/hero_slide.webp"),
           width: "1920",
           height: "560",
           alt: "Стена изумрудного цвета",
@@ -46,7 +46,7 @@ export default {
           description: "Подчеркнут вашу индивидуальность.",
         },
         {
-          image: require("../../../assets/images/hero_slide.jpg"),
+          image: ("../../assets/images/hero_slide.webp"),
           width: "1920",
           height: "560",
           alt: "Стена изумрудного цвета",
@@ -55,7 +55,7 @@ export default {
             "Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!",
         },
         {
-          image: require("../../../assets/images/hero_slide.jpg"),
+          image: ("../../assets/images/hero_slide.webp"),
           width: "1920",
           height: "560",
           alt: "Стена изумрудного цвета",
