@@ -1,5 +1,6 @@
 <template lang="pug">
   section.hero
+    HeroBreadcrumbs(:breadcrumbs="['Главная', 'Продукты', 'Краски']")
     div.hero__slider
       div.hero__slides(:style="{ transform: `translateX(-${currentSlide * 100}%)` }")
         div.hero__slide(v-for="(slide, index) in slides" :key="index")
@@ -13,8 +14,14 @@
             h2.hero__title {{ slide.title }}
             p.hero__description {{ slide.description }}
     div.hero__controls
-      button.hero__button.prev(@click="prevSlide") Prev
-      button.hero__button.next(@click="nextSlide") Next
+      button.hero__button.hero__button--prev(@click="prevSlide")
+        span.visually-hidden предыдущий слайд
+        svg(width="20" height="40")
+          use(xlink:href="#icon-slider_button")
+      button.hero__button.hero__button--next(@click="nextSlide")
+        span.visually-hidden следующий слайд
+        svg(width="20" height="40")
+          use(xlink:href="#icon-slider_button")
     div.hero__pagination
       span.hero__dot(v-for="(slide, index) in slides" 
                     :key="index" 
@@ -24,8 +31,12 @@
 
 <script>
 import { nextSlide, prevSlide, goToSlide } from "@/utilites/slider.js";
+import HeroBreadcrumbs from "./HeroBreadcrumbs.vue";
 
 export default {
+  components: {
+    HeroBreadcrumbs,
+  },
   data() {
     return {
       currentSlide: 0,
@@ -118,15 +129,19 @@ export default {
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
-  z-index: 1; /* Ensure controls are above slides */
+  z-index: 1;
 }
 
 .hero__button {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
   color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.hero__button--next {
+  transform: rotate(180deg);
 }
 
 .hero__pagination {
