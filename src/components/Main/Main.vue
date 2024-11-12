@@ -1,6 +1,6 @@
 <template lang="pug">
     main.main-container
-      h1.visully-hidden Онлайн-магазин цветовых решений для ремонта поверхностей 
+      h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей 
       Hero
     </template>
 
