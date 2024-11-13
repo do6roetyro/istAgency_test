@@ -10,15 +10,15 @@
 
 <script>
 import { ref } from "vue";
-import { useCatalogStore } from "@/store/store";
+import { useCartStore } from "@/store/cartStore";
 
 export default {
   props: ["product"],
   setup(props) {
-    const catalogStore = useCatalogStore();
+    const cartStore = useCartStore();
     const hover = ref(false);
     const addToCart = () => {
-      catalogStore.addToCart(props.product);
+      cartStore.addToCart(props.product);
     };
 
     return { addToCart, hover };

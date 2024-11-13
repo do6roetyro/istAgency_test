@@ -7,19 +7,19 @@
 </template>
     
 <script>
-import { useCatalogStore } from "@/store/store";
+import { useCartStore } from "@/store/cartStore";
 import { computed } from "vue";
 
 export default {
   emits: ["open-cart"],
   setup(props, { emit }) {
-    const catalogStore = useCatalogStore();
+    const cartStore = useCartStore();
 
     const openCart = () => {
       emit("open-cart");
     };
 
-    const cartItemCount = computed(() => catalogStore.cartItemCount);
+    const cartItemCount = computed(() => cartStore.cartItemCount);
 
     return {
       openCart,

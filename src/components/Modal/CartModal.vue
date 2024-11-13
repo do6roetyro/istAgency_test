@@ -25,7 +25,7 @@
   </template>
 
 <script>
-import { useCatalogStore } from "@/store/store";
+import { useCartStore } from "@/store/cartStore";
 import { computed } from "vue";
 
 export default {
@@ -37,42 +37,48 @@ export default {
     },
     emits: ["close-cart"],
     setup(props, { emit }) {
-        const catalogStore = useCatalogStore();
+        const cartStore = useCartStore();
 
         const closeCart = () => {
             emit("close-cart");
         };
 
-        const cartItemCount = computed(() => catalogStore.cartItemCount);
-        const cartTotalPrice = computed(() => catalogStore.cartTotalPrice);
-        const cartItems = computed(() => catalogStore.cartItems);
+        const cartItemCount = computed(() => cartStore.cartItemCount);
+        const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
+        const cartItems = computed(() => cartStore.cartItems);
 
         const clearCart = () => {
-            catalogStore.clearCart();
+            cartStore.clearCart();
         };
 
         const decreaseQuantity = (productId) => {
-            const currentQuantity = catalogStore.cart[productId].quantity;
-            catalogStore.updateCartItemQuantity(productId, currentQuantity - 1);
+            const cartItem = cartStore.cartItems[productId];
+            if (cartItem) {
+                const currentQuantity = cartItem.quantity;
+                cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
+            }
         };
 
         const increaseQuantity = (productId) => {
-            const currentQuantity = catalogStore.cart[productId].quantity;
-            catalogStore.updateCartItemQuantity(productId, currentQuantity + 1);
+            const cartItem = cartStore.cartItems[productId];
+            if (cartItem) {
+                const currentQuantity = cartItem.quantity;
+                cartStore.updateCartItemQuantity(productId, currentQuantity + 1);
+            }
         };
 
         const removeItem = (productId) => {
-            catalogStore.toggleRemovedStatus(productId);
+            cartStore.toggleRemovedStatus(productId);
         };
 
         const restoreItem = (productId) => {
-            catalogStore.toggleRemovedStatus(productId);
+            cartStore.toggleRemovedStatus(productId);
         };
 
         const checkout = () => {
             // Логика оформления заказа
             // alert("Заказ оформлен!");
-            catalogStore.clearCart();
+            cartStore.clearCart();
             closeCart();
         };
 

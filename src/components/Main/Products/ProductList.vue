@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { useCatalogStore } from "@/store/store";
+import { useCatalogStore } from "@/store/catalogStore";
 import ProductCard from "./ProductCard.vue";
 import { computed } from "vue";
 

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { useCatalogStore } from '@/store/store';
+import { useCatalogStore } from '@/store/catalogStore';
 
 export default {
   setup() {

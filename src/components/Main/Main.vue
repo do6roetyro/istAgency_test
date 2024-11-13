@@ -13,7 +13,7 @@ import ProductFilter from "./Products/ProductFilter.vue";
 import ProductSort from "./Products/ProductSort.vue";
 import ProductList from "./Products/ProductList.vue";
 import { onMounted } from "vue";
-import { useCatalogStore } from "@/store/store";
+import { useCatalogStore } from "@/store/catalogStore";
 
 export default {
   components: {
