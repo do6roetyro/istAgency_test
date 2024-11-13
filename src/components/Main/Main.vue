@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .main-container {
   flex-grow: 1;
   display: flex;

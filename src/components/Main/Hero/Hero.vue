@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .hero {
   position: relative;
   width: 100%;
@@ -89,7 +89,7 @@ export default {
 
 .hero__slides {
   display: flex;
-  transition: transform 0.8s ease-in-out; /* Smooth slide transition */
+  transition: transform 0.8s ease-in-out; 
 }
 
 .hero__slide {

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open",
-    "build": "webpack"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "@vue/language-plugin-pug": "^2.1.10",
     "babel-loader": "^9.2.1",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "file-loader": "^6.2.0",
@@ -26,6 +27,8 @@
     "imagemin-webp": "^8.0.0",
     "mini-css-extract-plugin": "^2.9.2",
     "pug-plain-loader": "^1.1.0",
+    "sass": "^1.80.7",
+    "sass-loader": "^16.0.3",
     "svg-sprite-loader": "^6.0.11",
     "terser-webpack-plugin": "^5.3.10",
     "vue-style-loader": "^4.1.3",

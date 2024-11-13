@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .products {
   width: 100%;
 }
@@ -36,7 +36,6 @@ export default {
 @media (max-width: 1024px) {
   .products__list {
     grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
-   
   }
 }
 </style>

@@ -30,12 +30,13 @@ module.exports = {
         loader: "pug-plain-loader",
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           process.env.NODE_ENV === "production"
             ? MiniCssExtractPlugin.loader
             : "vue-style-loader",
           "css-loader",
+          "sass-loader",
         ],
       },
       {

@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .hero__breadcrumbs {
   position: absolute;
   top: 20px;
@@ -47,10 +47,10 @@ export default {
   color: inherit;
   text-decoration: none;
   transition: color 0.3s;
-}
 
-.hero__breadcrumbs-link:hover {
-  color: #ffffff; /* Adjust color for hover effect if needed */
+  &:hover {
+    color: #ffffff;
+  }
 }
 
 .hero__separator {

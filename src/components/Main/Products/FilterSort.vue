@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .filter-sort {
   /* Стили для блока фильтрации и сортировки */
 }

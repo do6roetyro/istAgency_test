@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header__wrapper {
   display: flex;
   justify-content: space-between;

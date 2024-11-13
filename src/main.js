@@ -7,7 +7,7 @@ import "./assets/icons/heart.svg";
 import "./assets/icons/profile.svg";
 import "./assets/icons/search.svg";
 import "./assets/icons/slider_button.svg";
-import "./styles/global.css";
+import "./styles/global.scss";
 import heroImage from "./assets/images/hero_slide.webp";
 
 const app = createApp(App);
