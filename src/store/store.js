@@ -5,7 +5,7 @@ export const useCatalogStore = defineStore("catalog", {
   state: () => ({
     products: [],
     filteredProducts: [],
-    cart: [],
+    cart: {},
     filters: {
       isNew: false,
       inStock: false,
@@ -15,6 +15,20 @@ export const useCatalogStore = defineStore("catalog", {
     },
     sortOption: "default",
   }),
+  getters: {
+    cartItemCount(state) {
+      return Object.values(state.cart).reduce((total, item) => total + item.quantity, 0);
+    },
+    cartTotalPrice(state) {
+      return Object.values(state.cart).reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
+    },
+    cartItems(state) {
+      return Object.values(state.cart);
+    },
+  },
   actions: {
     async fetchProducts() {
       try {
@@ -22,27 +36,59 @@ export const useCatalogStore = defineStore("catalog", {
           "https://673203f17aaf2a9aff131bdc.mockapi.io/api/catalog/Paints"
         );
         this.products = response.data;
-        this.applyFilters(); // Применяем фильтры после загрузки данных
+        this.applyFilters();
       } catch (error) {
         console.error("Ошибка при загрузке продуктов:", error);
       }
     },
     addToCart(product) {
-      this.cart.push(product);
+      if (this.cart[product.id]) {
+        this.cart[product.id].quantity += 1;
+      } else {
+        this.cart[product.id] = {
+          product,
+          quantity: 1,
+          removed: false,
+        };
+      }
     },
+
+    removeFromCart(productId) {
+      if (this.cart[productId]) {
+        delete this.cart[productId];
+      }
+    },
+
+    updateCartItemQuantity(productId, quantity) {
+      if (this.cart[productId]) {
+        this.cart[productId].quantity = quantity;
+        if (quantity <= 0) {
+          delete this.cart[productId];
+        }
+      }
+    },
+
+    clearCart() {
+      this.cart = {};
+    },
+
+    toggleRemovedStatus(productId) {
+      if (this.cart[productId]) {
+        this.cart[productId].removed = !this.cart[productId].removed;
+      }
+    },
+
     updateFilters(filterName, value) {
       this.filters[filterName] = value;
       this.applyFilters();
     },
     applyFilters() {
-      // Фильтрация товаров без мутации массива
       let filtered = this.products.filter((product) => {
         return Object.keys(this.filters).every((filter) => {
           return this.filters[filter] ? product[filter] === true : true;
         });
       });
 
-      // Обновляем filteredProducts без мутации
       this.filteredProducts = filtered;
       this.applySort();
     },
@@ -51,7 +97,6 @@ export const useCatalogStore = defineStore("catalog", {
       this.applySort();
     },
     applySort() {
-      // Создаем новый массив для сортировки
       let sorted = [...this.filteredProducts];
 
       switch (this.sortOption) {
@@ -73,7 +118,6 @@ export const useCatalogStore = defineStore("catalog", {
           break;
       }
 
-      // Обновляем filteredProducts без мутации
       this.filteredProducts = sorted;
     },
   },

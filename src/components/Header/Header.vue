@@ -6,10 +6,11 @@
         Navigation(:isDropdown="isDropdown").header__navigation
       div.header__container 
         ContactInfo.header__contact-info
-        UserBlock(:cartCount="cartCount").header__user-block
+        UserBlock.header__user-block(@open-cart="openCart")
   </template>
 
 <script>
+import { ref } from "vue";
 import Logo from "./Logo/Logo.vue";
 import Navigation from "./Navigation/Navigation.vue";
 import ContactInfo from "./ContactInfo/ContactInfo.vue";
@@ -22,10 +23,17 @@ export default {
     ContactInfo,
     UserBlock,
   },
-  data() {
+  emits: ["open-cart"],
+  setup(props, { emit }) {
+    const isDropdown = ref(window.innerWidth < 768);
+
+    const openCart = () => {
+      emit("open-cart");
+    };
+
     return {
-      isDropdown: window.innerWidth < 768, // для переключения навигации
-      cartCount: 0, // примерное значение количества товаров в корзине
+      isDropdown,
+      openCart,
     };
   },
 };
@@ -44,6 +52,7 @@ export default {
 .header__container:first-child {
   gap: 9vw;
 }
+
 .header__container:last-child {
   gap: 6vw;
 }

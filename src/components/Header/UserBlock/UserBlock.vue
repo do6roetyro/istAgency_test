@@ -3,27 +3,31 @@
       Search.user-block__item.search
       User.user-block__item.user
       Favorites.user-block__item.favourites
-      Cart(:cartCount="cartCount").user-block__item.cart
+      CartButton.user-block__item.cart(@open-cart="openCart")
     </template>
-    
-    <script>
-    import Search from './Search.vue';
-    import User from './User.vue';
-    import Favorites from './Favorites.vue';
-    import Cart from './Cart.vue';
-    
-    export default {
-      components: {
-        Search,
-        User,
-        Favorites,
-        Cart
-      },
-      props: {
-        cartCount: {
-          type: Number,
-          default: 0
-        }
-      }
+
+<script>
+import Search from './Search.vue';
+import User from './User.vue';
+import Favorites from './Favorites.vue';
+import CartButton from './CartButton.vue';
+
+export default {
+  components: {
+    Search,
+    User,
+    Favorites,
+    CartButton,
+  },
+  emits: ["open-cart"],
+  setup(props, { emit }) {
+    const openCart = () => {
+      emit("open-cart");
     };
-    </script>
+
+    return {
+      openCart,
+    };
+  },
+};
+</script>
