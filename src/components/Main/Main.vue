@@ -1,14 +1,16 @@
 <template lang="pug">
-    main.main-container
-      h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей 
-      Hero
-      FilterSort
-      ProductList
-    </template>
+  main.main-container
+    h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей
+    Hero
+    ProductFilter
+    ProductSort
+    ProductList
+</template>
 
 <script>
 import Hero from "./Hero/Hero.vue";
-import FilterSort from "./Products/FilterSort.vue";
+import ProductFilter from "./Products/ProductFilter.vue";
+import ProductSort from "./Products/ProductSort.vue";
 import ProductList from "./Products/ProductList.vue";
 import { onMounted } from "vue";
 import { useCatalogStore } from "@/store/store";
@@ -16,7 +18,8 @@ import { useCatalogStore } from "@/store/store";
 export default {
   components: {
     Hero,
-    FilterSort,
+    ProductFilter,
+    ProductSort,
     ProductList,
   },
   setup() {

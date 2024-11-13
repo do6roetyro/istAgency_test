@@ -13,7 +13,7 @@ export const useCatalogStore = defineStore("catalog", {
       isExclusive: false,
       onSale: false,
     },
-    sortOption: "priceAsc",
+    sortOption: "default",
   }),
   actions: {
     async fetchProducts() {
@@ -22,7 +22,7 @@ export const useCatalogStore = defineStore("catalog", {
           "https://673203f17aaf2a9aff131bdc.mockapi.io/api/catalog/Paints"
         );
         this.products = response.data;
-        this.filteredProducts = response.data;
+        this.applyFilters(); // Применяем фильтры после загрузки данных
       } catch (error) {
         console.error("Ошибка при загрузке продуктов:", error);
       }
@@ -35,13 +35,15 @@ export const useCatalogStore = defineStore("catalog", {
       this.applyFilters();
     },
     applyFilters() {
-      this.filteredProducts = this.products.filter((product) => {
+      // Фильтрация товаров без мутации массива
+      let filtered = this.products.filter((product) => {
         return Object.keys(this.filters).every((filter) => {
-          return this.filters[filter]
-            ? product[filter] === this.filters[filter]
-            : true;
+          return this.filters[filter] ? product[filter] === true : true;
         });
       });
+
+      // Обновляем filteredProducts без мутации
+      this.filteredProducts = filtered;
       this.applySort();
     },
     updateSortOption(option) {
@@ -49,11 +51,30 @@ export const useCatalogStore = defineStore("catalog", {
       this.applySort();
     },
     applySort() {
-      if (this.sortOption === "priceAsc") {
-        this.filteredProducts.sort((a, b) => a.price - b.price);
-      } else {
-        this.filteredProducts.sort((a, b) => b.price - a.price);
+      // Создаем новый массив для сортировки
+      let sorted = [...this.filteredProducts];
+
+      switch (this.sortOption) {
+        case "priceAsc":
+          sorted.sort((a, b) => a.price - b.price);
+          break;
+        case "priceDesc":
+          sorted.sort((a, b) => b.price - a.price);
+          break;
+        case "popular":
+          sorted.sort((a, b) => (b.countOfPurchases || 0) - (a.countOfPurchases || 0));
+          break;
+        case "new":
+          sorted.sort((a, b) => Number(b.isNew) - Number(a.isNew));
+          break;
+        case "default":
+        default:
+          sorted.sort((a, b) => a.id - b.id);
+          break;
       }
+
+      // Обновляем filteredProducts без мутации
+      this.filteredProducts = sorted;
     },
   },
 });

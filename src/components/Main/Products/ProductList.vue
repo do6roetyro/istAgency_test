@@ -1,7 +1,7 @@
 <template lang="pug">
   section.products
     p Количество найденных товаров: {{ products.length }}
-    ul.products__list
+    .products__list
       ProductCard(v-for="product in products" :key="product.id" :product="product")
 </template>
 
@@ -14,7 +14,7 @@ export default {
   components: { ProductCard },
   setup() {
     const catalogStore = useCatalogStore();
-    const products = computed(() => catalogStore.filteredProducts); // используем computed для обновлений
+    const products = computed(() => catalogStore.filteredProducts);
 
     return { products };
   },
@@ -29,8 +29,7 @@ export default {
 .products__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
-  gap: 16px; /* Расстояние между элементами */
-  justify-content: center; /* Для центрирования всей сетки */
+  gap: 16px;
 }
 
 @media (max-width: 1024px) {
