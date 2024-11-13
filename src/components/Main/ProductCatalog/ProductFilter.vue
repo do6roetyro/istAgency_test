@@ -1,8 +1,8 @@
 <template lang="pug">
-    section.product-filter
-      .filters
-        label(v-for="(label, filter) in filterLabels" :key="filter")
-          input(type="checkbox" :checked="filters[filter]" @change="toggleFilter(filter)")
+    .filter
+      .filter__list
+        label.filter__label(v-for="(label, filter) in filterLabels" :key="filter")
+          input.filter__input(type="checkbox" :checked="filters[filter]" @change="toggleFilter(filter)")
           | {{ label }}
   </template>
 

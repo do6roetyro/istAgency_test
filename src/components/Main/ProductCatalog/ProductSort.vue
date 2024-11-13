@@ -1,11 +1,11 @@
 <template lang="pug">
-    section.product__sort
-      select(@change="changeSortOption($event)")
-        option(value="default") По умолчанию
-        option(value="priceDesc") Сначала дорогие
-        option(value="priceAsc") Сначала недорогие
-        option(value="popular") Сначала популярные
-        option(value="new") Сначала новые
+    section.sort
+      select.sort__list(@change="changeSortOption($event)")
+        option.sort__item(value="default") По умолчанию
+        option.sort__item(value="priceDesc") Сначала дорогие
+        option.sort__item(value="priceAsc") Сначала недорогие
+        option.sort__item(value="popular") Сначала популярные
+        option.sort__item(value="new") Сначала новые
   </template>
   
   <script>

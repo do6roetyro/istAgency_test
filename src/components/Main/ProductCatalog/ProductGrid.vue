@@ -1,8 +1,8 @@
 <template lang="pug">
-  .products
-    p Количество найденных товаров: {{ products.length }}
-    ul.products__list
-      ProductCard(v-for="product in products" :key="product.id" :product="product")
+  .product-grid
+    p.product-grid__count Количество найденных товаров: {{ products.length }} 
+    ul.product-grid__list
+      ProductCard.product-grid__item(v-for="product in products" :key="product.id" :product="product")
 </template>
 
 <script>
@@ -22,11 +22,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.products {
+.product-grid {
   width: 100%;
 }
 
-.products__list {
+.product-grid__list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -36,7 +36,7 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .products__list {
+  .product-grid__list {
     grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   }
 }

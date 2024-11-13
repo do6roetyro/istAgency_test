@@ -2,15 +2,15 @@
     section.product-catalog
       h2.visually-hidden Каталог продукции
       div.product-catalog__controls
-        ProductFilter
-        ProductSort
-      ProductList.product-catalog__list
+        ProductFilter.product-catalog__filter
+        ProductSort.product-catalog__sort
+      ProductGrid.product-catalog__product-grid
   </template>
   
   <script>
   import ProductFilter from './ProductFilter.vue';
   import ProductSort from './ProductSort.vue';
-  import ProductList from './ProductList.vue';
+  import ProductGrid from './ProductGrid.vue';
   import { onMounted } from 'vue';
   import { useCatalogStore } from '@/store/catalogStore';
   
@@ -18,7 +18,7 @@
     components: {
       ProductFilter,
       ProductSort,
-      ProductList,
+      ProductGrid,
     },
     setup() {
       const catalogStore = useCatalogStore();
