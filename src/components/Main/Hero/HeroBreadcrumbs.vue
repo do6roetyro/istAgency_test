@@ -1,9 +1,9 @@
 <template lang="pug">
-  nav.hero__breadcrumbs
-    ul.hero__breadcrumbs-list
-      li.hero__breadcrumbs-item(v-for="(breadcrumb, index) in breadcrumbs" :key="index")
-        a.hero__breadcrumbs-link(href="#") {{ breadcrumb }}
-        span.hero__separator(v-if="index < breadcrumbs.length - 1") •
+  nav.breadcrumbs
+    ul.breadcrumbs__list
+      li.breadcrumbs__item(v-for="(breadcrumb, index) in breadcrumbs" :key="index")
+        a.breadcrumbs__link(href="#") {{ breadcrumb }}
+        span.breadcrumbs__separator(v-if="index < breadcrumbs.length - 1") •
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hero__breadcrumbs {
+.breadcrumbs {
   position: absolute;
   top: 20px;
   left: 50%;
@@ -30,7 +30,7 @@ export default {
   z-index: 100;
 }
 
-.hero__breadcrumbs-list {
+.breadcrumbs__list {
   display: flex;
   gap: 0.5em;
   list-style: none;
@@ -38,12 +38,12 @@ export default {
   margin: 0;
 }
 
-.hero__breadcrumbs-item {
+.breadcrumbs__item {
   display: flex;
   align-items: center;
 }
 
-.hero__breadcrumbs-link {
+.breadcrumbs__link {
   color: inherit;
   text-decoration: none;
   transition: color 0.3s;
@@ -53,7 +53,7 @@ export default {
   }
 }
 
-.hero__separator {
+.breadcrumbs__separator {
   margin: 0 0.5em;
 }
 </style>

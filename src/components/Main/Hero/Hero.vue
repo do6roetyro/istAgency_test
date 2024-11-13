@@ -1,6 +1,6 @@
 <template lang="pug">
   section.hero
-    HeroBreadcrumbs(:breadcrumbs="['Главная', 'Продукты', 'Краски']")
+    HeroBreadcrumbs.hero__breadcrumbs(:breadcrumbs="['Главная', 'Продукты', 'Краски']")
     div.hero__slider
       div.hero__slides(:style="{ transform: `translateX(-${currentSlide * 100}%)` }")
         div.hero__slide(v-for="(slide, index) in slides" :key="index")
