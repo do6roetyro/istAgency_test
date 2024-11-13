@@ -1,5 +1,5 @@
 <template lang="pug">
-  article.product-card
+  li.product-card
     img(:src="product.imageUrl", :alt="product.name")
     h3 {{ product.name }}
     p Артикул: {{ product.sku }}

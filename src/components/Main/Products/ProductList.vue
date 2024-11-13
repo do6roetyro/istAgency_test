@@ -1,7 +1,7 @@
 <template lang="pug">
-  section.products
+  .products
     p Количество найденных товаров: {{ products.length }}
-    .products__list
+    ul.products__list
       ProductCard(v-for="product in products" :key="product.id" :product="product")
 </template>
 
@@ -27,6 +27,9 @@ export default {
 }
 
 .products__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
   gap: 16px;

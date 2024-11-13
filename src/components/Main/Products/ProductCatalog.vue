@@ -1,0 +1,46 @@
+<template lang="pug">
+    section.product-catalog
+      h2.visually-hidden Каталог продукции
+      div.product-catalog__controls
+        ProductFilter
+        ProductSort
+      ProductList.product-catalog__list
+  </template>
+  
+  <script>
+  import ProductFilter from './ProductFilter.vue';
+  import ProductSort from './ProductSort.vue';
+  import ProductList from './ProductList.vue';
+  import { onMounted } from 'vue';
+  import { useCatalogStore } from '@/store/catalogStore';
+  
+  export default {
+    components: {
+      ProductFilter,
+      ProductSort,
+      ProductList,
+    },
+    setup() {
+      const catalogStore = useCatalogStore();
+  
+      onMounted(() => {
+        catalogStore.fetchProducts();
+      });
+    },
+  };
+  </script>
+  
+  <style lang="scss" scoped>
+  .product-catalog {
+    /* Стили для секции каталога продуктов */
+  }
+  
+  .product-catalog__controls {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    /* Дополнительные стили для контролов */
+  }
+  
+  /* Дополнительные стили при необходимости */
+  </style>

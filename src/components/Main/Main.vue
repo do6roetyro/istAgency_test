@@ -2,32 +2,17 @@
   main.main-container
     h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей
     Hero
-    ProductFilter
-    ProductSort
-    ProductList
+    ProductCatalog
 </template>
 
 <script>
 import Hero from "./Hero/Hero.vue";
-import ProductFilter from "./Products/ProductFilter.vue";
-import ProductSort from "./Products/ProductSort.vue";
-import ProductList from "./Products/ProductList.vue";
-import { onMounted } from "vue";
-import { useCatalogStore } from "@/store/catalogStore";
+import ProductCatalog from "./Products/ProductCatalog.vue";
 
 export default {
   components: {
     Hero,
-    ProductFilter,
-    ProductSort,
-    ProductList,
-  },
-  setup() {
-    const catalogStore = useCatalogStore();
-
-    onMounted(() => {
-      catalogStore.fetchProducts();
-    });
+    ProductCatalog,
   },
 };
 </script>
