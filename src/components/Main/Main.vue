@@ -7,7 +7,7 @@
 
 <script>
 import Hero from "./Hero/Hero.vue";
-import ProductCatalog from "./Products/ProductCatalog.vue";
+import ProductCatalog from "./ProductCatalog/ProductCatalog.vue";
 
 export default {
   components: {
