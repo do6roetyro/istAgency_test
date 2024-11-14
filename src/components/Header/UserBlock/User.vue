@@ -6,3 +6,11 @@
     </template>
 
 <script></script>
+
+<style lang="scss" scoped>
+
+.user__icon {
+  width: clamp(16px, 2vw, 24px);
+  height: clamp(16px, 2vw, 24px);
+}
+</style>

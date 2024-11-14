@@ -7,11 +7,15 @@
 
 <script></script>
 
-
 <style lang="scss" scoped>
-    .logo__link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.logo__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo__icon {
+  width: clamp(99px, 10vw, 131px);
+  height: clamp(21px, 10vw, 26px);
+}
 </style>

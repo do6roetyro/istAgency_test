@@ -8,15 +8,16 @@
 
 <style lang="scss" scoped>
 .contact-info__description {
-  font-size: 16px;
+  font-size: clamp(10px, 1.2vw, 16px);
   font-weight: 500;
-  line-height: 16px;
+  line-height: clamp(10px, 1.2vw, 16px);
   letter-spacing: -0.02em;
   color: #1F2020;
   display: block;
 }
 
 .contact-info__link {
+  font-size: clamp(10px, 1.2vw, 16px);
   line-height: 14px;
   opacity: 0.3;
   transition: opacity 0.15s;

@@ -54,4 +54,9 @@ export default {
   letter-spacing: 0.06em;
   text-align: center;
 }
+
+.cart__icon {
+  width: clamp(16px, 2.3vw, 24px);
+  height: clamp(16px, 2.3vw, 24px);
+}
 </style>

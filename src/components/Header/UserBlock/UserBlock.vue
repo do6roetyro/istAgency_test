@@ -38,7 +38,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 1.25vw;
 
   &>* {
     transition: opacity 0.15s;

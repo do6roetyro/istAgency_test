@@ -44,12 +44,14 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 36px;
-  padding-bottom: 36px;
+
+  padding-top: clamp(21px, 3vw, 36px);
+  padding-bottom: clamp(21px, 3vw, 36px);
 }
 
 .header__container {
   display: flex;
+  align-items: center;
 
   &:first-child {
     gap: 9vw;
@@ -58,5 +60,18 @@ export default {
   &:last-child {
     gap: 6vw;
   }
+}
+
+@media (max-width: 1340px) {
+  .header__container {
+
+  &:first-child {
+    gap: 3.4vw;
+  }
+
+  &:last-child {
+    gap: 2.5vw;
+  }
+}
 }
 </style>

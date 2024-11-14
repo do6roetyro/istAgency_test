@@ -6,3 +6,12 @@
     </template>
 
 <script></script>
+
+
+<style lang="scss" scoped>
+
+.search__icon {
+  width: clamp(16px, 2vw, 24px);
+  height: clamp(16px, 2vw, 24px);
+}
+</style>

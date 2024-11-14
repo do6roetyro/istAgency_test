@@ -23,14 +23,16 @@ export default {
 
 <style lang="scss" scoped>
 .navigation__list {
-  font-size: 14px;
+  font-size: clamp(10px, 1.2vw, 14px);
   font-weight: 400;
   line-height: 14px;
   letter-spacing: 0.06em;
   color: #1F2020;
   text-transform: uppercase;
   display: flex;
-  gap: 12px;
+  gap: 0.63vw;
+  margin: 0;
+
 }
 
 .navigation__link {
