@@ -38,9 +38,15 @@
   .product-catalog__controls {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    /* Дополнительные стили для контролов */
   }
   
-  /* Дополнительные стили при необходимости */
+  .product-catalog__sort {
+    position: absolute;
+    right: 3.33vw;
+  }
+
+  .product-catalog__filter{
+    margin-right: 138px;
+    width: 165px;
+  }
   </style>

@@ -2,7 +2,7 @@
   main.main-container
     h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей
     Hero.main-container__hero
-    ProductCatalog.main-container__product-catalog
+    ProductCatalog.main-container__product-catalog.wrapper
 </template>
 
 <script>
@@ -23,5 +23,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.main-container__product-catalog {
+  display: flex;
+  padding-top: 72px;
+  padding-bottom: 141px;
+  position: relative;
 }
 </style>

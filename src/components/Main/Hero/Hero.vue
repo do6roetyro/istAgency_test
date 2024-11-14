@@ -2,7 +2,12 @@
   section.hero
     HeroBreadcrumbs.hero__breadcrumbs(:breadcrumbs="['Главная', 'Продукты', 'Краски']")
     div.hero__slider
-      div.hero__slides(:style="{ transform: `translateX(-${currentSlide * 100}%)` }")
+      div.hero__slides(
+        :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+      )
         div.hero__slide(v-for="(slide, index) in slides" :key="index")
           img.hero__image(
             :src="slide.image" 
@@ -60,6 +65,8 @@ export default {
         },
         // другие слайды
       ],
+      startX: 0, // начальная координата X при касании
+      endX: 0, // конечная координата X при отпускании
     };
   },
   methods: {
@@ -71,6 +78,25 @@ export default {
     },
     goToSlide(index) {
       this.currentSlide = goToSlide(index);
+    },
+    handleTouchStart(event) {
+      this.startX = event.touches[0].clientX; // сохраняем начальную точку касания
+    },
+    handleTouchMove(event) {
+      this.endX = event.touches[0].clientX; // обновляем текущую точку касания
+    },
+    handleTouchEnd() {
+      const swipeDistance = this.startX - this.endX;
+      if (swipeDistance > 50) {
+        // свайп влево
+        this.nextSlide();
+      } else if (swipeDistance < -50) {
+        // свайп вправо
+        this.prevSlide();
+      }
+      // сброс значений после завершения свайпа
+      this.startX = 0;
+      this.endX = 0;
     },
   },
 };

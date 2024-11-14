@@ -19,9 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .breadcrumbs {
-  position: absolute;
-  top: 32px;
-  left: 64px;
+
   
   color: #d1d1d1;
   display: flex;
