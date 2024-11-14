@@ -43,6 +43,7 @@
   .product-catalog__sort {
     position: absolute;
     right: 3.33vw;
+    top: 54px;
   }
 
   .product-catalog__filter{
