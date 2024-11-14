@@ -5,7 +5,7 @@
       use(xlink:href="#icon-cart")
     span.cart__count(v-if="cartItemCount > 0") {{ cartItemCount }}
 </template>
-    
+
 <script>
 import { useCartStore } from "@/store/cartStore";
 import { computed } from "vue";
@@ -40,12 +40,18 @@ export default {
 
 .cart__count {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  padding: 2px 5px;
+  top: 0px;
+  right: 0px;
+  min-width: 24px;
+  min-height: 24px;
+  background: rgba(123, 184, 153, 1);
+  color: rgba(31, 32, 32, 1);
+  border-radius: 50px;
+  padding: 4px 8px;
   font-size: 12px;
+  font-weight: 500;
+  line-height: 14.52px;
+  letter-spacing: 0.06em;
+  text-align: center;
 }
 </style>

@@ -31,9 +31,9 @@ export default {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
   gap: 16px;
-  width: 100%;
+
 }
 
 @media (max-width: 1024px) {

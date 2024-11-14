@@ -34,10 +34,6 @@
   .product-catalog {
     width: 100%
   }
-
-  .product-catalog__product-grid {
-    /* // */
-  }
   
   .product-catalog__controls {
     display: flex;
