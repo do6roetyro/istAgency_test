@@ -81,10 +81,17 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
+  @media (max-width: 769px) {
+    overflow: visible;
+    min-height: 64px;
+  }
 }
 
 .hero__slider {
   display: flex;
+  @media (max-width: 769px) {
+    display: none;
+  }
 }
 
 .hero__slides {
@@ -139,6 +146,9 @@ export default {
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 1;
+  @media (max-width: 769px) {
+    display: none;
+  }
 }
 
 .hero__button {
@@ -170,7 +180,9 @@ export default {
   padding: 13px 24px;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 16px;
-    /* Ensure pagination is above slides */
+  @media (max-width: 769px) {
+    display: none;
+  }
 }
 
 .hero__dot {
@@ -184,5 +196,18 @@ export default {
 
 .hero__dot.active {
   background-color: #fff;
+}
+
+.hero__breadcrumbs {
+  position: absolute;
+  top: 32px;
+  left: 64px;
+
+  @media (max-width: 769px) {
+    position: relative;
+    color: #1f2020;
+    top: 16px;
+    left: 3.3vw;
+  }
 }
 </style>

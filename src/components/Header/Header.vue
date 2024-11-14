@@ -1,16 +1,21 @@
 <template lang="pug">
   header.header
-    div.header__wrapper.wrapper
-      BurgerMenu.header__burger(:isDropdown="isDropdown" @toggle-dropdown="toggleDropdown")
-      Logo.header__logo
-      CartButton.header__cart(@open-cart="openCart")
-      Navigation.header__navigation(v-if="!isMobile" :isDropdown="isDropdown")
-      .header__container(v-if="!isMobile")
-        ContactInfo.header__contact-info
-        UserBlock.header__user-block(@open-cart="openCart")
-    .header__dropdown(v-if="isDropdown")
-      Navigation(:isDropdown="isDropdown").header__navigation
-  </template>
+  div.header__wrapper.wrapper
+    BurgerMenu.header__burger(:isDropdown="isDropdown" @toggle-dropdown="toggleDropdown")
+    Logo.header__logo
+    CartButton.header__cart(@open-cart="openCart")
+    
+    // Десктопная версия навигации
+    Navigation.header__navigation--desktop(v-if="!isMobile")
+
+    .header__container(v-if="!isMobile")
+      ContactInfo.header__contact-info
+      UserBlock.header__user-block(@open-cart="openCart")
+  
+  // Выпадающее меню для мобильной версии
+  div.header__dropdown(v-if="isDropdown && isMobile")
+    Navigation.header__navigation--mobile
+</template>
 
 <script>
 import { ref, onMounted, onBeforeUnmount } from "vue";
@@ -32,11 +37,11 @@ export default {
   },
   emits: ["open-cart"],
   setup(props, { emit }) {
-    const isMobile = ref(window.innerWidth < 769);
+    const isMobile = ref(window.innerWidth <= 768);
     const isDropdown = ref(false);
 
     const updateScreenSize = () => {
-      isMobile.value = window.innerWidth < 769;
+      isMobile.value = window.innerWidth <= 768;
       if (!isMobile.value) isDropdown.value = false;
     };
 
@@ -70,6 +75,13 @@ export default {
   align-items: center;
   padding-top: clamp(21px, 3vw, 36px);
   padding-bottom: clamp(21px, 3vw, 36px);
+  @media (max-width: 769px) {
+    border-bottom: 1px solid rgba(31, 32, 32, 0.06);
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 3.4vw;
+    margin-right: 3.4vw;
+  }
 }
 
 .header__logo {
@@ -82,13 +94,27 @@ export default {
   display: flex;
   align-items: center;
   gap: 6vw;
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     gap: 3vw;
+  }
+  @media (max-width: 769px) {
+    display: none; // Скрываем на мобильных экранах
   }
 }
 
-.header__navigation {
+.header__navigation--desktop {
   display: flex;
+  @media (max-width: 769px) {
+    display: none; // скрываем только на мобильных экранах для десктопной версии
+  }
+}
+
+.header__navigation--mobile {
+  display: none; // скрыта по умолчанию
+  @media (max-width: 769px) {
+    display: flex; // показываем только в бургер-меню на мобильных экранах
+    flex-direction: column;
+  }
 }
 
 .header__cart,

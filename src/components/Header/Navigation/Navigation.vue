@@ -33,7 +33,7 @@ export default {
   gap: 0.63vw;
   margin: 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: 769px) {
     flex-direction: column;
     gap: 16px;
   }
