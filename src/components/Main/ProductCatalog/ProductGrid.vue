@@ -33,10 +33,10 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
   gap: 16px;
-}
-
-@media (max-width: 1024px) {
-  .product-grid__list {
+  @media (max-width: 940px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  @media (max-width: 769px) {
     grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   }
 }

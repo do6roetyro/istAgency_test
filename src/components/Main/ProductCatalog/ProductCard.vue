@@ -34,14 +34,29 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* Другие стили */
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -22px;
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.product-card__image {
+  height: 278px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-card__description {
   margin: 0;
+  padding-bottom: 8px;
 }
 
-.product-card__title{
+.product-card__title {
   font-size: 16px;
   font-weight: 300;
   line-height: 17.92px;
@@ -63,9 +78,10 @@ export default {
 }
 
 .product-card__price {
-font-size: 16px;
-font-weight: 600;
-line-height: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  margin: 0;
 }
 
 .product-card__add-to-cart {
@@ -78,7 +94,6 @@ line-height: 16px;
   border-radius: 8px;
   /* Позиционирование кнопки */
 }
-
 
 .product-card:hover .product-card__add-to-cart {
   display: block;
