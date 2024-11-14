@@ -32,11 +32,11 @@ export default {
   },
   emits: ["open-cart"],
   setup(props, { emit }) {
-    const isMobile = ref(window.innerWidth < 768);
+    const isMobile = ref(window.innerWidth < 769);
     const isDropdown = ref(false);
 
     const updateScreenSize = () => {
-      isMobile.value = window.innerWidth < 768;
+      isMobile.value = window.innerWidth < 769;
       if (!isMobile.value) isDropdown.value = false;
     };
 
@@ -73,7 +73,7 @@ export default {
 }
 
 .header__logo {
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     margin: 0 auto;
   }
 }
@@ -82,6 +82,9 @@ export default {
   display: flex;
   align-items: center;
   gap: 6vw;
+  @media(max-width: 1024px) {
+    gap: 3vw;
+  }
 }
 
 .header__navigation {
@@ -91,7 +94,7 @@ export default {
 .header__cart,
 .header__burger {
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     display: block;
   }
 }
