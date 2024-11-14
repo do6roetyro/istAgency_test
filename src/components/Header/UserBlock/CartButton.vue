@@ -59,7 +59,7 @@ export default {
   width: clamp(16px, 2.3vw, 24px);
   height: clamp(16px, 2.3vw, 24px);
 
-  @media(max-width: 767px) {
+  @media(max-width: 769px) {
     width: 24px;
     height: 24px;
   }
