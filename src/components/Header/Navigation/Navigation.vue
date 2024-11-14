@@ -33,6 +33,10 @@ export default {
   gap: 0.63vw;
   margin: 0;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 .navigation__link {
