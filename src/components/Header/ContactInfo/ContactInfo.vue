@@ -5,3 +5,24 @@
     </template>
 
 <script></script>
+
+<style lang="scss" scoped>
+.contact-info__description {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: #1F2020;
+  display: block;
+}
+
+.contact-info__link {
+  line-height: 14px;
+  opacity: 0.3;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+</style>

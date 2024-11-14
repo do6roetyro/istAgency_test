@@ -31,3 +31,21 @@ export default {
   },
 };
 </script>
+
+
+<style lang="scss" scoped>
+.user-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  &>* {
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+</style>

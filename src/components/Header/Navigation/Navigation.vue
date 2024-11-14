@@ -19,3 +19,26 @@ export default {
   }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.navigation__list {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.06em;
+  color: #1F2020;
+  text-transform: uppercase;
+  display: flex;
+  gap: 12px;
+}
+
+.navigation__link {
+  padding: 6px;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+</style>

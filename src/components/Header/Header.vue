@@ -43,6 +43,9 @@ export default {
 .header__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 36px;
+  padding-bottom: 36px;
 }
 
 .header__container {

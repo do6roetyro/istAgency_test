@@ -32,6 +32,10 @@ export default {
 <style lang="scss" scoped>
 .cart__button {
   position: relative;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
 }
 
 .cart__count {
