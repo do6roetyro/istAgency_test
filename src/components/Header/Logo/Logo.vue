@@ -6,3 +6,12 @@
     </template>
 
 <script></script>
+
+
+<style lang="scss" scoped>
+    .logo__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
