@@ -55,7 +55,6 @@ export default {
 .product-catalog__title {
   display: none;
   position: absolute;
-  font-family: Inter;
   font-size: 36px;
   line-height: 31.68px;
   letter-spacing: -0.04em;

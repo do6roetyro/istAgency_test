@@ -4,24 +4,25 @@
       div.cart-modal__content
         button.cart-modal__close(@click="closeCart") ✕
         h2 Корзина
-        p Общее количество товаров: {{ cartItemCount }}
-        button(@click="clearCart") Очистить список
+        p.cart-modal__item-count {{ cartItemCount }} товара
+        button.cart-modal__clear(@click="clearCart") Очистить список
         ul.cart-modal__list
           li.cart-modal__item(v-for="item in cartItems" :key="item.product.id")
-            img(:src="item.product.imageUrl", :alt="item.product.name")
-            div
-              h3 {{ item.product.name }}
-              p Цена: {{ item.product.price }} ₽
+            img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
+            div.cart-modal__item-details
+              h3.cart-modal__item-name {{ item.product.name }}
+              p.cart-modal__item-price {{ item.product.price }} ₽
               div.cart-item__controls
-                button(@click="decreaseQuantity(item.product.id)") -
-                span {{ item.quantity }}
-                button(@click="increaseQuantity(item.product.id)") +
-              button(@click="removeItem(item.product.id)") ✕
-              div(v-if="item.removed")
-                p Товар удален
-                button(@click="restoreItem(item.product.id)") Восстановить
-        p Итоговая сумма: {{ cartTotalPrice }} ₽
-        button(@click="checkout") Оформить заказ
+                button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
+                span.cart-item__quantity {{ item.quantity }}
+                button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
+            button.cart-item__remove(@click="removeItem(item.product.id)") ✕
+            div(v-if="item.removed" class="cart-item__removed")
+              p Товар удален
+              button.cart-item__restore(@click="restoreItem(item.product.id)") Восстановить
+        div.cart-modal__footer
+          p.cart-modal__total Итог: {{ cartTotalPrice }} ₽
+          button.cart-modal__checkout(@click="checkout") Оформить заказ
   </template>
 
 <script>
@@ -29,124 +30,245 @@ import { useCartStore } from "@/store/cartStore";
 import { computed } from "vue";
 
 export default {
-    props: {
-        isOpen: {
-            type: Boolean,
-            default: false,
-        },
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: false,
     },
-    emits: ["close-cart"],
-    setup(props, { emit }) {
-        const cartStore = useCartStore();
+  },
+  emits: ["close-cart"],
+  setup(props, { emit }) {
+    const cartStore = useCartStore();
 
-        const closeCart = () => {
-            emit("close-cart");
-        };
+    const closeCart = () => {
+      emit("close-cart");
+    };
 
-        const cartItemCount = computed(() => cartStore.cartItemCount);
-        const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
-        const cartItems = computed(() => cartStore.cartItems);
+    const cartItemCount = computed(() => cartStore.cartItemCount);
+    const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
+    const cartItems = computed(() => cartStore.cartItems);
 
-        const clearCart = () => {
-            cartStore.clearCart();
-        };
+    const clearCart = () => {
+      cartStore.clearCart();
+    };
 
-        const decreaseQuantity = (productId) => {
-            const cartItem = cartStore.cartItems[productId];
-            if (cartItem) {
-                const currentQuantity = cartItem.quantity;
-                cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
-            }
-        };
+    const decreaseQuantity = (productId) => {
+      const cartItem = cartStore.cartItems[productId];
+      if (cartItem) {
+        const currentQuantity = cartItem.quantity;
+        cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
+      }
+    };
 
-        const increaseQuantity = (productId) => {
-            const cartItem = cartStore.cartItems[productId];
-            if (cartItem) {
-                const currentQuantity = cartItem.quantity;
-                cartStore.updateCartItemQuantity(productId, currentQuantity + 1);
-            }
-        };
+    const increaseQuantity = (productId) => {
+      const cartItem = cartStore.cartItems[productId];
+      if (cartItem) {
+        const currentQuantity = cartItem.quantity;
+        cartStore.updateCartItemQuantity(productId, currentQuantity + 1);
+      }
+    };
 
-        const removeItem = (productId) => {
-            cartStore.toggleRemovedStatus(productId);
-        };
+    const removeItem = (productId) => {
+      cartStore.toggleRemovedStatus(productId);
+    };
 
-        const restoreItem = (productId) => {
-            cartStore.toggleRemovedStatus(productId);
-        };
+    const restoreItem = (productId) => {
+      cartStore.toggleRemovedStatus(productId);
+    };
 
-        const checkout = () => {
-            // Логика оформления заказа
-            // alert("Заказ оформлен!");
-            cartStore.clearCart();
-            closeCart();
-        };
+    const checkout = () => {
+      alert("Заказ оформлен");
+      cartStore.clearCart();
+      closeCart();
+    };
 
-        return {
-            closeCart,
-            cartItemCount,
-            cartTotalPrice,
-            cartItems,
-            clearCart,
-            decreaseQuantity,
-            increaseQuantity,
-            removeItem,
-            restoreItem,
-            checkout,
-        };
-    },
+    return {
+      closeCart,
+      cartItemCount,
+      cartTotalPrice,
+      cartItems,
+      clearCart,
+      decreaseQuantity,
+      increaseQuantity,
+      removeItem,
+      restoreItem,
+      checkout,
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .cart-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: end;
+  z-index: 1000;
 }
 
 .cart-modal__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
 }
 
 .cart-modal__content {
-    position: relative;
-    background: white;
-    margin: auto;
-    padding: 20px;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
+  position: relative;
+  background: #fff;
+  padding: 30px;
+  width: 600px;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  height: 100%;
 }
 
 .cart-modal__close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.cart-modal__item-count,
+.cart-modal__clear {
+  font-size: 14px;
+  margin: 0 0 15px;
+  display: inline-block;
+}
+
+.cart-modal__item-count {
+  color: #333;
+}
+
+.cart-modal__clear {
+  color: #999;
+  cursor: pointer;
+  float: right;
 }
 
 .cart-modal__list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .cart-modal__item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-modal__item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.cart-modal__item-details {
+  flex-grow: 1;
+}
+
+.cart-modal__item-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: #333;
+}
+
+.cart-modal__item-price {
+  font-size: 14px;
+  color: #666;
 }
 
 .cart-item__controls {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
 }
 
-.cart-item__controls button {
-    margin: 0 5px;
+.cart-item__control-button {
+  width: 30px;
+  height: 30px;
+  background: #f7f7f7;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  margin: 0 5px;
+}
+
+.cart-item__quantity {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.cart-item__removed {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.cart-item__restore {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.cart-modal__footer {
+  margin-top: auto;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cart-modal__total {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cart-modal__checkout {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
 }
 </style>
