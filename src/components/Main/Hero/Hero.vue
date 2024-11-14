@@ -89,7 +89,7 @@ export default {
 
 .hero__slides {
   display: flex;
-  transition: transform 0.8s ease-in-out; 
+  transition: transform 0.8s ease-in-out;
 }
 
 .hero__slide {
@@ -110,15 +110,24 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
   color: #fff;
+  width: 472px;
 }
 
 .hero__title {
-  font-size: 2em;
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 63.36px;
+  letter-spacing: -0.02em;
   margin: 0;
+  padding-bottom: 24px;
 }
 
 .hero__description {
-  font-size: 1em;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20.8px;
+  letter-spacing: 0.02em;
+  text-wrap: initial;
   margin: 0;
 }
 
@@ -138,29 +147,39 @@ export default {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-}
+  position: relative;
 
-.hero__button--next {
-  transform: rotate(180deg);
+  &--next {
+    transform: rotate(180deg);
+    right: 54px;
+  }
+
+  &--prev {
+    left: 54px;
+  }
 }
 
 .hero__pagination {
   position: absolute;
-  bottom: 20px;
+  bottom: 39px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  z-index: 1; /* Ensure pagination is above slides */
+  z-index: 1;
+  padding: 13px 24px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+    /* Ensure pagination is above slides */
 }
 
 .hero__dot {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s; /* Smooth dot transition */
+  transition: background-color 0.3s;
 }
 
 .hero__dot.active {

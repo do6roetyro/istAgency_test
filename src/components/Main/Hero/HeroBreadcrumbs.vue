@@ -20,21 +20,23 @@ export default {
 <style lang="scss" scoped>
 .breadcrumbs {
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 32px;
+  left: 64px;
+  
   color: #d1d1d1;
-  font-size: 1em;
   display: flex;
   align-items: center;
   z-index: 100;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.3;
 }
 
 .breadcrumbs__list {
   display: flex;
-  gap: 0.5em;
-  list-style: none;
-  padding: 0;
+  align-items: center;
   margin: 0;
 }
 
@@ -46,14 +48,17 @@ export default {
 .breadcrumbs__link {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.3s, opacity 0.3s;
 
   &:hover {
     color: #ffffff;
+    opacity: 1;
   }
 }
 
 .breadcrumbs__separator {
   margin: 0 0.5em;
+  position: relative;
+  bottom: 1px;
 }
 </style>

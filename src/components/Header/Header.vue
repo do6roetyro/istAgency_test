@@ -50,13 +50,13 @@ export default {
 
 .header__container {
   display: flex;
-}
 
-.header__container:first-child {
-  gap: 9vw;
-}
+  &:first-child {
+    gap: 9vw;
+  }
 
-.header__container:last-child {
-  gap: 6vw;
+  &:last-child {
+    gap: 6vw;
+  }
 }
 </style>
