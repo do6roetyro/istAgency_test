@@ -2,6 +2,7 @@
   div#app
     Header(@open-cart="openCart")
     Main
+    Footer
     CartModal(:isOpen="isCartOpen" @close-cart="closeCart")
 </template>
 
@@ -9,12 +10,14 @@
 import Header from "./components/Header/Header.vue";
 import Main from "./components/Main/Main.vue";
 import CartModal from "./components/Modal/CartModal.vue";
+import Footer from "./components/Footer/Footer.vue"
 import { ref } from "vue";
 
 export default {
   components: {
     Header,
     Main,
+    Footer,
     CartModal,
   },
   setup() {
@@ -37,3 +40,5 @@ export default {
 };
 </script>
 
+
+<style lang="scss" scoped></style>
