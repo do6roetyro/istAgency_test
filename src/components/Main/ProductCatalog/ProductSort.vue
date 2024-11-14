@@ -7,27 +7,32 @@
         option.sort__item(value="popular") Сначала популярные
         option.sort__item(value="new") Сначала новые
   </template>
-  
-  <script>
-  import { useCatalogStore } from '@/store/catalogStore';
-  
-  export default {
-    setup() {
-      const catalogStore = useCatalogStore();
-  
-      const changeSortOption = (event) => {
-        catalogStore.updateSortOption(event.target.value);
-      };
-  
-      return {
-        changeSortOption,
-      };
-    },
-  };
-  </script>
-  
-  <style lang="scss" scoped>
-  .product__sort {
-    /* Стили для блока сортировки */
-  }
-  </style>
+
+<script>
+import { useCatalogStore } from "@/store/catalogStore";
+import { debounce } from "@/utilites/debounce";
+
+export default {
+  setup() {
+    const catalogStore = useCatalogStore();
+
+    const debouncedChangeSortOption = debounce((event) => {
+      catalogStore.updateSortOption(event.target.value);
+    }, 500); 
+
+    const changeSortOption = (event) => {
+      debouncedChangeSortOption(event);
+    };
+
+    return {
+      changeSortOption,
+    };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.product__sort {
+  /* Стили для блока сортировки */
+}
+</style>

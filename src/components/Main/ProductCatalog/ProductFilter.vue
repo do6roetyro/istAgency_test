@@ -7,35 +7,34 @@
   </template>
 
 <script>
-import { useCatalogStore } from '@/store/catalogStore';
+import { useCatalogStore } from "@/store/catalogStore";
+import { debounce } from "@/utilites/debounce";
 
 export default {
-    setup() {
-        const catalogStore = useCatalogStore();
-        const filters = catalogStore.filters;
-        const filterLabels = {
-            isNew: 'Новинки',
-            inStock: 'Есть в наличии',
-            isContract: 'Контрактные',
-            isExclusive: 'Эксклюзивные',
-            onSale: 'Распродажа',
-        };
+  setup() {
+    const catalogStore = useCatalogStore();
+    const filters = catalogStore.filters;
+    const filterLabels = {
+      isNew: "Новинки",
+      inStock: "Есть в наличии",
+      isContract: "Контрактные",
+      isExclusive: "Эксклюзивные",
+      onSale: "Распродажа",
+    };
 
-        const toggleFilter = (filter) => {
-            catalogStore.updateFilters(filter, !catalogStore.filters[filter]);
-        };
+    const debouncedUpdateFilters = debounce((filter) => {
+      catalogStore.updateFilters(filter, !catalogStore.filters[filter]);
+    }, 500); 
 
-        return {
-            filters,
-            filterLabels,
-            toggleFilter,
-        };
-    },
+    const toggleFilter = (filter) => {
+      debouncedUpdateFilters(filter);
+    };
+
+    return {
+      filters,
+      filterLabels,
+      toggleFilter,
+    };
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-.product-filter {
-    /* Стили для блока фильтрации */
-}
-</style>
