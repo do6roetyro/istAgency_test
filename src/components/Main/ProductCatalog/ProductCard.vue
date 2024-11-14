@@ -86,13 +86,18 @@ export default {
 
 .product-card__add-to-cart {
   display: none;
-  // position: absolute;
   font-size: 20px;
   border: none;
   background-color: rgba(123, 184, 153, 1);
   padding: 6px 30px;
   border-radius: 8px;
-  /* Позиционирование кнопки */
+
+  @media (max-width: 769px) {
+    display: block;
+    font-size: 20px;
+    padding: 4px 14px;
+    background-color: #f2f2f2;
+  }
 }
 
 .product-card:hover .product-card__add-to-cart {

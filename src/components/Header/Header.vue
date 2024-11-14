@@ -129,7 +129,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  top: 68px;
+  top: 72px;
   width: 100%;
   background-color: #fff;
   padding: 20px;
