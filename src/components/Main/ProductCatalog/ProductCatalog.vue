@@ -32,7 +32,11 @@
   
   <style lang="scss" scoped>
   .product-catalog {
-    /* Стили для секции каталога продуктов */
+    width: 100%
+  }
+
+  .product-catalog__product-grid {
+    /* // */
   }
   
   .product-catalog__controls {

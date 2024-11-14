@@ -1,9 +1,9 @@
 <template lang="pug">
     div.user-block
-      Search.user-block__item.search
-      User.user-block__item.user
-      Favorites.user-block__item.favourites
-      CartButton.user-block__item.cart(@open-cart="openCart")
+      Search.user-block__search.search
+      User.user-block__user.user
+      Favorites.user-block__favourites.favourites
+      CartButton.user-block__cart.cart(@open-cart="openCart")
     </template>
 
 <script>

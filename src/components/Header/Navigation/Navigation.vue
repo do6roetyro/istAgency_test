@@ -1,24 +1,21 @@
 <template lang="pug">
-    nav(:class="{ dropdown: isDropdown }").navigation
-      NavItem(name="Продукты")
-      NavItem(name="Цвета")
-      NavItem(name="Вдохновение")
-      NavItem(name="Советы")
-      NavItem(name="Найти магазин")
-    </template>
-    
-    <script>
-    import NavItem from './NavItem.vue';
-    
-    export default {
-      components: {
-        NavItem
-      },
-      props: {
-        isDropdown: {
-          type: Boolean,
-          default: false
-        }
-      }
-    };
-    </script>
+  nav(:class="{ dropdown: isDropdown }").navigation
+    ul.navigation__list
+      li.navigation__item(v-for="(item, index) in navItems" :key="index")
+        a.navigation__link(href="#") {{ item }}
+</template>
+
+<script>
+export default {
+  props: {
+    isDropdown: {
+      type: Boolean,
+      default: false
+    },
+    navItems: {
+      type: Array,
+      default: () => ["Продукты", "Цвета", "Вдохновение", "Советы", "Найти магазин"]
+    }
+  }
+};
+</script>
