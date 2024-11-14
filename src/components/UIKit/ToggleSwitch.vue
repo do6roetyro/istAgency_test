@@ -1,21 +1,38 @@
 <template lang="pug">
     .toggle(@click="toggle")
-        input.toggle__checkbox(type="checkbox" :checked="modelValue" @change="$emit('update:modelValue', !modelValue)")
-            .toggle__switch
-</template>
+      input.toggle__checkbox(
+        type="checkbox"
+        :checked="checked"
+        @change="onChange"
+      )
+      .toggle__switch
+    </template>
 
 <script>
 export default {
-    name: "ToggleSwitch",
+    name: 'ToggleSwitch',
     props: {
         modelValue: {
             type: Boolean,
-            required: true,
+            default: false,
+        },
+    },
+    computed: {
+        checked: {
+            get() {
+                return this.modelValue;
+            },
+            set(value) {
+                this.$emit('update:modelValue', value);
+            },
         },
     },
     methods: {
         toggle() {
-            this.$emit("update:modelValue", !this.modelValue);
+            this.checked = !this.checked;
+        },
+        onChange(event) {
+            this.checked = event.target.checked;
         },
     },
 };
@@ -42,6 +59,7 @@ export default {
     transition: background-color 0.3s ease;
 
     &::after {
+        content: '';
         position: absolute;
         top: 50%;
         left: 5px;
