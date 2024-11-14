@@ -2,9 +2,9 @@
   .filter
     .filter__list
       label.filter__label(v-for="(label, filter) in filterLabels" :key="filter")
-        .toggle-container(@click="toggleFilter(filter)")
-          input.toggle-checkbox(type="checkbox" :checked="filters[filter]")
-          .toggle-switch
+        .toggle(@click="toggleFilter(filter)")
+          input.toggle__checkbox(type="checkbox" :checked="filters[filter]")
+          .toggle__switch
         span {{ label }}
 </template>
 
@@ -59,40 +59,44 @@ export default {
   gap: 10px;
 }
 
-.toggle-container {
+.toggle{
   position: relative;
   width: 65px;
   height: 24px;
   cursor: pointer;
 }
 
-.toggle-checkbox {
+.toggle__checkbox {
   display: none;
 }
 
-.toggle-switch {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(123, 184, 153, 1);
+.toggle__switch {
+  width: 36px;
+  height: 22px;
+  background-color: rgba(242, 242, 242, 1);
   border-radius: 12px;
   position: relative;
   transition: background-color 0.3s ease;
-}
 
-.toggle-switch::after {
-  content: "";
+  &::after {
+    content: "";
   position: absolute;
   top: 50%;
   left: 5px;
   transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   background-color: rgba(31, 32, 32, 1);
   border-radius: 50%;
   transition: left 0.3s ease;
+  }
 }
 
-.toggle-checkbox:checked + .toggle-switch::after {
-  left: 48px; /* Move the circle to the right */
+.toggle__checkbox:checked + .toggle__switch::after {
+  left: 22px;
+}
+
+.toggle__checkbox:checked + .toggle__switch {
+  background-color: rgba(123, 184, 153, 1);
 }
 </style>
