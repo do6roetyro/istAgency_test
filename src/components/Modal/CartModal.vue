@@ -26,7 +26,7 @@
                 v-if="!item.removed"
                 @click="removeItem(item.product.id)"
               ) ✕
-              div.cart-item__icon-container(v-else)
+              div.cart-item__icon-container(v-if="item.removed" @click="restoreItem(item.product.id)")              
                 span.visually-hidden восстановить
                 svg.cart-item__icon(width="24" height="24")
                   use(xlink:href="#icon-repeat")
@@ -132,11 +132,23 @@ export default {
   z-index: 1000;
 }
 
-.cart-modal__item--removed {
-  position: relative;
+.cart-modal__item {
+  &--removed {
+    position: relative;
+    pointer-events: none;
+
+    .cart-item__icon-container {
+      cursor: pointer;
+      pointer-events: auto;
+
+      &:hover {
+        filter: brightness(0)
+      }
+    }
+  }
 }
 
-.cart-modal__overlay {
+.cart-modal__item--removed .cart-modal__overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -303,23 +315,6 @@ export default {
   }
 }
 
-.cart-item__removed {
-  display: flex;
-  align-items: center;
-  color: #999;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.cart-item__restore {
-  background: none;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: 14px;
-  margin-left: 10px;
-}
-
 .cart-modal__container {
   display: flex;
   flex-direction: column;
@@ -329,7 +324,6 @@ export default {
 
 .cart-modal__footer {
   margin-top: auto;
-
   position: relative;
   bottom: 0;
   display: flex;
@@ -361,14 +355,5 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.cart-item__action {
-  opacity: 1;
-}
-
-.cart-item__icon {
-  fill: #000;
-  opacity: 1;
 }
 </style>
