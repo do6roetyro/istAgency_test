@@ -32,7 +32,7 @@ export default {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
-  gap: 16px;
+  gap: 2px;
   @media (max-width: 940px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }

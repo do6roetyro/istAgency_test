@@ -336,15 +336,19 @@ export default {
 }
 
 .cart-item__icon-container {
-  position: absolute;
   cursor: pointer;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10000;
+  margin-left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-item__action {
+  opacity: 1;
 }
 
 .cart-item__icon {
   fill: #000;
+  opacity: 1;
 }
 </style>
