@@ -9,10 +9,11 @@ export const useCartStore = defineStore('cart', {
             return Object.values(state.cartItems).reduce((total, item) => total + item.quantity, 0);
         },
         cartTotalPrice(state) {
-            return Object.values(state.cartItems).reduce(
-                (total, item) => total + item.product.price * item.quantity,
+            const total = Object.values(state.cartItems).reduce(
+                (sum, item) => sum + item.product.price * item.quantity,
                 0
             );
+            return total.toLocaleString('ru-RU');
         },
         cartItemsList(state) {
             return Object.values(state.cartItems);

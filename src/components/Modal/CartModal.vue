@@ -32,7 +32,9 @@
                   use(xlink:href="#icon-repeat")
             div.cart-item__overlay(v-if="item.removed")
         div.cart-modal__footer
-          p.cart-modal__total Итог: {{ cartTotalPrice }} ₽
+          p.cart-modal__total 
+            span Итого 
+            span {{ cartTotalPrice }} ₽
           button.cart-modal__checkout(@click="checkout") Оформить заказ
   </template>
 
@@ -123,13 +125,15 @@ export default {
 .cart-modal {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: end;
   z-index: 1000;
+  max-width: 1920px;
 }
 
 .cart-modal__item {
@@ -168,6 +172,15 @@ export default {
   pointer-events: none;
 }
 
+.cart-modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+
 .cart-modal__content {
   position: relative;
   background: #fff;
@@ -200,9 +213,7 @@ export default {
   display: inline-block;
 }
 
-.cart-modal__item-count {
-  color: #333;
-}
+.cart-modal__item-count {}
 
 .cart-modal__title {
   font-size: 30px;
@@ -223,6 +234,8 @@ export default {
   background-color: transparent;
   margin-left: auto;
   float: right;
+
+
 }
 
 .cart-modal__list {
@@ -285,7 +298,7 @@ export default {
 .cart-item__control-button {
   width: 40px;
   height: 24px;
-  background: #F2F2F2;
+  background-color: #F2F2F2;
   border: none;
   cursor: pointer;
   font-size: 18px;
@@ -295,6 +308,11 @@ export default {
   color: #000000;
   margin: 0;
   border-radius: 4px;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: #bbbbbb;
+  }
 }
 
 .cart-item__quantity {
@@ -333,20 +351,38 @@ export default {
 }
 
 .cart-modal__total {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
+  span {
+    display: block;
+
+    &:first-child {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+
+    &:last-child {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 30px;
+      letter-spacing: -0.02em;
+    }
+  }
+
 }
 
 .cart-modal__checkout {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  font-size: 16px;
+  padding: 20px 57px;
+  background-color: #7BB899;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.52px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .cart-item__icon-container {

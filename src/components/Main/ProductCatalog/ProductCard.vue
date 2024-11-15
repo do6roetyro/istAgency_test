@@ -41,8 +41,6 @@ export default {
 
   &::after {
     content: "";
-    // position: absolute;
-    // bottom: -22px;
     height: 1px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
@@ -100,16 +98,25 @@ export default {
   display: none;
   font-size: 24px;
   border: none;
-  background-color: rgba(123, 184, 153, 1);
+  background-color: #7BB899;
   padding: 2px 30px;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: #92ccaf;
+  }
 
   @media (max-width: 769px) {
     display: block;
     font-size: 20px;
     padding: 4px 14px;
     background-color: #f2f2f2;
+
+    &:hover {
+      background-color: #bbbbbb;
+    }
   }
 }
 
