@@ -1,20 +1,20 @@
 <template lang="pug">
   header.header
-  div.header__wrapper.wrapper
-    BurgerMenu.header__burger(:isDropdown="isDropdown" @toggle-dropdown="toggleDropdown")
-    Logo.header__logo
-    CartButton.header__cart(@open-cart="openCart")
-    
-    // Десктопная версия навигации
-    Navigation.header__navigation--desktop(v-if="!isMobile")
+    div.header__wrapper.wrapper
+      BurgerMenu.header__burger(:isDropdown="isDropdown" @toggle-dropdown="toggleDropdown")
+      Logo.header__logo
+      CartButton.header__cart(@open-cart="openCart")
+      
+      // Десктопная версия навигации
+      Navigation.header__navigation--desktop(v-if="!isMobile")
 
-    .header__container(v-if="!isMobile")
-      ContactInfo.header__contact-info
-      UserBlock.header__user-block(@open-cart="openCart")
-  
-  // Выпадающее меню для мобильной версии
-  div.header__dropdown(v-if="isDropdown && isMobile")
-    Navigation.header__navigation--mobile
+      .header__container(v-if="!isMobile")
+        ContactInfo.header__contact-info
+        UserBlock.header__user-block(@open-cart="openCart")
+    
+    // Выпадающее меню для мобильной версии
+    div.header__dropdown(v-if="isDropdown && isMobile")
+      Navigation.header__navigation--mobile
 </template>
 
 <script>

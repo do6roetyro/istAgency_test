@@ -3,7 +3,7 @@
       div.cart-modal__overlay(@click="closeCart")
       div.cart-modal__content
         button.cart-modal__close(@click="closeCart") ✕
-        h2 Корзина
+        h2.cart-modal__title Корзина
         p.cart-modal__item-count {{ cartItemCount }} товара
         button.cart-modal__clear(@click="clearCart") Очистить список
         ul.cart-modal__list
@@ -126,7 +126,6 @@ export default {
   padding: 30px;
   width: 600px;
   max-width: 500px;
-  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
   height: 100%;
@@ -134,12 +133,17 @@ export default {
 
 .cart-modal__close {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 32px;
+  right: 40px;
   background: none;
   border: none;
   font-size: 18px;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .cart-modal__item-count,
@@ -151,6 +155,15 @@ export default {
 
 .cart-modal__item-count {
   color: #333;
+}
+
+.cart-modal__title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 26.4px;
+  letter-spacing: -0.04em;
+  margin: 0;
+  padding-bottom: 94px;
 }
 
 .cart-modal__clear {

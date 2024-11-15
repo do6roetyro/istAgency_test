@@ -23,6 +23,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .main-container__product-catalog {
