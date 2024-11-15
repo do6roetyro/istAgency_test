@@ -3,18 +3,20 @@
     h1.visually-hidden Онлайн-магазин цветовых решений для ремонта поверхностей
     Hero.main-container__hero
     ProductCatalog.main-container__product-catalog.wrapper
-</template>
+  </template>
 
 <script>
+import { defineComponent } from "vue";
 import Hero from "./Hero/Hero.vue";
 import ProductCatalog from "./ProductCatalog/ProductCatalog.vue";
 
-export default {
+export default defineComponent({
+  name: "MainContainer",
   components: {
     Hero,
     ProductCatalog,
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +25,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .main-container__product-catalog {
