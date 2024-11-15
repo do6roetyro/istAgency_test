@@ -18,9 +18,9 @@
               h3.cart-modal__item-name {{ item.product.name }}
               p.cart-modal__item-price {{ item.product.price }} ₽
             div.cart-item__controls
-              button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
+              button.cart-item__control-button(:disabled="item.removed" @click="decreaseQuantity(item.product.id)") -
               span.cart-item__quantity {{ item.quantity }}
-              button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
+              button.cart-item__control-button(:disabled="item.removed" @click="increaseQuantity(item.product.id)") +
             div.cart-item__action
               button.cart-item__remove(
                 v-if="!item.removed"
@@ -143,6 +143,16 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.cart-item__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
   pointer-events: none;
 }
 
