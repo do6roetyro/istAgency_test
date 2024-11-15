@@ -5,7 +5,7 @@
       button.cart-modal__close(@click="closeCart") ✕
       h2.cart-modal__title Корзина
       p.cart-modal__item-count {{ cartItemCount }} {{itemCountLabel}}
-      button.cart-modal__clear(@click="clearCart") очистить список
+      button.cart-modal__clear(@click="clearCart" :disabled="cartItemCount === 0") {{cartItemCount === 0 ? 'Корзина пуста' : 'Очистить список'}}
       div.cart-modal__container
         ul.cart-modal__list
           li.cart-modal__item(
@@ -27,6 +27,7 @@
                 @click="removeItem(item.product.id)"
               ) ✕
               div.cart-item__icon-container(v-else)
+                span.visually-hidden восстановить
                 svg.cart-item__icon(width="24" height="24")
                   use(xlink:href="#icon-repeat")
             div.cart-item__overlay(v-if="item.removed")
