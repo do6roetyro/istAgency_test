@@ -31,5 +31,9 @@ export default {
   padding-top: 72px;
   padding-bottom: 141px;
   position: relative;
+
+  @media (max-width: 769px) {
+    padding-top: 132px;
+  }
 }
 </style>

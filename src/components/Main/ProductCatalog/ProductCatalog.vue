@@ -50,6 +50,10 @@ export default {
 .product-catalog__filter {
   margin-right: 138px;
   width: 165px;
+
+  @media (max-width: 769px) {
+    margin-right: 0;
+  }
 }
 
 .product-catalog__title {

@@ -57,6 +57,10 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 16px;
+
+  @media (max-width: 769px) {
+   height: 156px;
+  }
 }
 
 .product-card__description {

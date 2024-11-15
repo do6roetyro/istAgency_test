@@ -49,5 +49,9 @@ export default {
   text-transform: uppercase;
   margin: 0;
   padding-bottom: 44px;
+
+  @media (max-width: 769px) {
+  display: none;
+}
 }
 </style>
