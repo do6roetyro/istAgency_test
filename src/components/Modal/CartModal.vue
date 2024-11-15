@@ -6,32 +6,33 @@
       h2.cart-modal__title Корзина
       p.cart-modal__item-count {{ cartItemCount }} {{itemCountLabel}}
       button.cart-modal__clear(@click="clearCart") очистить список
-      ul.cart-modal__list
-        li.cart-modal__item(
-          :class="{ 'cart-modal__item--removed': item.removed }"
-          v-for="item in cartItems"
-          :key="item.product.id"
-        )
-          img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
-          div.cart-modal__item-details
-            h3.cart-modal__item-name {{ item.product.name }}
-            p.cart-modal__item-price {{ item.product.price }} ₽
-          div.cart-item__controls
-            button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
-            span.cart-item__quantity {{ item.quantity }}
-            button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
-          div.cart-item__action
-            button.cart-item__remove(
-              v-if="!item.removed"
-              @click="removeItem(item.product.id)"
-            ) ✕
-            div.cart-item__icon-container(v-else)
-              svg.cart-item__icon(width="24" height="24")
-                use(xlink:href="#icon-repeat")
-          div.cart-item__overlay(v-if="item.removed")
-      div.cart-modal__footer
-        p.cart-modal__total Итог: {{ cartTotalPrice }} ₽
-        button.cart-modal__checkout(@click="checkout") Оформить заказ
+      div.cart-modal__container
+        ul.cart-modal__list
+          li.cart-modal__item(
+            :class="{ 'cart-modal__item--removed': item.removed }"
+            v-for="item in cartItems"
+            :key="item.product.id"
+          )
+            img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
+            div.cart-modal__item-details
+              h3.cart-modal__item-name {{ item.product.name }}
+              p.cart-modal__item-price {{ item.product.price }} ₽
+            div.cart-item__controls
+              button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
+              span.cart-item__quantity {{ item.quantity }}
+              button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
+            div.cart-item__action
+              button.cart-item__remove(
+                v-if="!item.removed"
+                @click="removeItem(item.product.id)"
+              ) ✕
+              div.cart-item__icon-container(v-else)
+                svg.cart-item__icon(width="24" height="24")
+                  use(xlink:href="#icon-repeat")
+            div.cart-item__overlay(v-if="item.removed")
+        div.cart-modal__footer
+          p.cart-modal__total Итог: {{ cartTotalPrice }} ₽
+          button.cart-modal__checkout(@click="checkout") Оформить заказ
   </template>
 
 <script>
@@ -134,13 +135,13 @@ export default {
   position: relative;
 }
 
-.cart-item__overlay {
+.cart-modal__overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   pointer-events: none;
 }
 
@@ -308,8 +309,16 @@ export default {
   margin-left: 10px;
 }
 
+.cart-modal__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: -webkit-fill-available;
+}
+
 .cart-modal__footer {
   margin-top: auto;
+
   position: relative;
   bottom: 0;
   display: flex;

@@ -1,6 +1,6 @@
 <template lang="pug">
   li.product-card
-    a.product-card__link(href='#')
+    a.product-card__link
       .product-card__image
         img(:src="product.imageUrl", :alt="product.name")
       .product-card__description  
