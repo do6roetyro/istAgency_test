@@ -4,22 +4,24 @@
       div.cart-modal__content
         button.cart-modal__close(@click="closeCart") ✕
         h2.cart-modal__title Корзина
-        p.cart-modal__item-count {{ cartItemCount }} товара
-        button.cart-modal__clear(@click="clearCart") Очистить список
+        p.cart-modal__item-count {{ cartItemCount }} {{itemCountLabel}}
+        button.cart-modal__clear(@click="clearCart") очистить список
         ul.cart-modal__list
           li.cart-modal__item(v-for="item in cartItems" :key="item.product.id")
             img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
             div.cart-modal__item-details
               h3.cart-modal__item-name {{ item.product.name }}
               p.cart-modal__item-price {{ item.product.price }} ₽
-              div.cart-item__controls
-                button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
-                span.cart-item__quantity {{ item.quantity }}
-                button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
+            div.cart-item__controls
+              button.cart-item__control-button(@click="decreaseQuantity(item.product.id)") -
+              span.cart-item__quantity {{ item.quantity }}
+              button.cart-item__control-button(@click="increaseQuantity(item.product.id)") +
             button.cart-item__remove(@click="removeItem(item.product.id)") ✕
             div(v-if="item.removed" class="cart-item__removed")
-              p Товар удален
-              button.cart-item__restore(@click="restoreItem(item.product.id)") Восстановить
+              button.cart-item__restore(@click="restoreItem(item.product.id)")
+                span.visually-hidden Восстановить 
+                svg.user__icon(width="24" height="24")
+                  use(xlink:href="#icon-repeat")
         div.cart-modal__footer
           p.cart-modal__total Итог: {{ cartTotalPrice }} ₽
           button.cart-modal__checkout(@click="checkout") Оформить заказ
@@ -28,6 +30,7 @@
 <script>
 import { useCartStore } from "@/store/cartStore";
 import { computed } from "vue";
+import { getDeclension } from "@/utilites/getDeclension";
 
 export default {
   props: {
@@ -35,6 +38,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    itemCount: {
+      type: Number,
+      required: true
+    }
+  },
+  computed: {
+    itemCountLabel() {
+      return getDeclension(this.itemCount, 'товар', 'товара', 'товаров')
+    }
   },
   emits: ["close-cart"],
   setup(props, { emit }) {
@@ -125,7 +137,6 @@ export default {
   background: #fff;
   padding: 30px;
   width: 600px;
-  max-width: 500px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
   height: 100%;
@@ -167,8 +178,14 @@ export default {
 }
 
 .cart-modal__clear {
-  color: #999;
+  color: rgba(31, 32, 32, 0.4);
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 15.68px;
+  border: none;
+  background-color: transparent;
+  margin-left: auto;
   float: right;
 }
 
@@ -181,64 +198,85 @@ export default {
 .cart-modal__item {
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+
+  &:first-child {
+    border-top: 1px solid #f0f0f0;
+  }
 }
 
 .cart-modal__item-image {
-  width: 60px;
-  height: 60px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
   margin-right: 15px;
 }
 
 .cart-modal__item-details {
   flex-grow: 1;
+  min-width: 165px;
+  margin-right: 62px;
 }
 
 .cart-modal__item-name {
-  font-size: 16px;
   font-weight: 500;
   margin: 0;
-  color: #333;
+  color: #1F2020;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 17.92px;
+  letter-spacing: 0.02em;
 }
 
 .cart-modal__item-price {
-  font-size: 14px;
-  color: #666;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #1F2020;
+
 }
 
 .cart-item__controls {
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  gap: 17px;
+  justify-content: center;
+  margin-right: 37px;
 }
 
 .cart-item__control-button {
-  width: 30px;
-  height: 30px;
-  background: #f7f7f7;
+  width: 40px;
+  height: 24px;
+  background: #F2F2F2;
   border: none;
   cursor: pointer;
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
-  margin: 0 5px;
+  color: #000000;
+  margin: 0;
+  border-radius: 4px;
 }
 
 .cart-item__quantity {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .cart-item__remove {
   background: none;
   border: none;
   font-size: 18px;
-  color: #ccc;
+  color: #1F2020;
   cursor: pointer;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .cart-item__removed {
