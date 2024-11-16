@@ -40,8 +40,9 @@
 
 <script>
 import { useCartStore } from "@/store/cartStore";
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { getDeclension } from "@/utilites/getDeclension";
+import { addNoScroll, removeNoScroll } from "@/utilites/noScroll";
 
 export default {
   props: {
@@ -51,25 +52,23 @@ export default {
     },
     itemCount: {
       type: Number,
-      required: true
-    }
-  },
-  computed: {
-    itemCountLabel() {
-      return getDeclension(this.itemCount, 'товар', 'товара', 'товаров')
-    }
+      required: true,
+    },
   },
   emits: ["close-cart"],
   setup(props, { emit }) {
     const cartStore = useCartStore();
 
-    const closeCart = () => {
-      emit("close-cart");
-    };
-
+    // Методы управления корзиной
     const cartItemCount = computed(() => cartStore.cartItemCount);
     const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
     const cartItems = computed(() => cartStore.cartItems);
+
+    // Сложение склонений
+    const itemCountLabel = computed(() =>
+      getDeclension(cartItemCount.value, "товар", "товара", "товаров")
+    );
+
 
     const clearCart = () => {
       cartStore.clearCart();
@@ -105,11 +104,30 @@ export default {
       closeCart();
     };
 
+    const closeCart = () => {
+      emit("close-cart");
+      removeNoScroll();
+    };
+
+    // Watch для изменения состояния модального окна
+    watch(
+      () => props.isOpen,
+      (newVal) => {
+        if (newVal) {
+          addNoScroll();
+        } else {
+          removeNoScroll();
+        }
+      },
+      { immediate: true } // Запускаем при инициализации
+    );
+
     return {
       closeCart,
       cartItemCount,
       cartTotalPrice,
       cartItems,
+      itemCountLabel,
       clearCart,
       decreaseQuantity,
       increaseQuantity,
@@ -146,7 +164,7 @@ export default {
       pointer-events: auto;
 
       &:hover {
-        filter: brightness(0)
+        filter: brightness(0);
       }
     }
   }
@@ -213,7 +231,8 @@ export default {
   display: inline-block;
 }
 
-.cart-modal__item-count {}
+.cart-modal__item-count {
+}
 
 .cart-modal__title {
   font-size: 30px;
@@ -234,8 +253,6 @@ export default {
   background-color: transparent;
   margin-left: auto;
   float: right;
-
-
 }
 
 .cart-modal__list {
@@ -272,7 +289,7 @@ export default {
 .cart-modal__item-name {
   font-weight: 500;
   margin: 0;
-  color: #1F2020;
+  color: #1f2020;
   font-size: 16px;
   font-weight: 300;
   line-height: 17.92px;
@@ -283,8 +300,7 @@ export default {
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
-  color: #1F2020;
-
+  color: #1f2020;
 }
 
 .cart-item__controls {
@@ -298,7 +314,7 @@ export default {
 .cart-item__control-button {
   width: 40px;
   height: 24px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border: none;
   cursor: pointer;
   font-size: 18px;
@@ -324,7 +340,7 @@ export default {
   background: none;
   border: none;
   font-size: 18px;
-  color: #1F2020;
+  color: #1f2020;
   cursor: pointer;
   opacity: 0.2;
 
@@ -367,16 +383,15 @@ export default {
       letter-spacing: -0.02em;
     }
   }
-
 }
 
 .cart-modal__checkout {
   padding: 20px 57px;
-  background-color: #7BB899;
+  background-color: #7bb899;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 12px;
   font-weight: 500;
   line-height: 14.52px;
