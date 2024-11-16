@@ -217,8 +217,8 @@ export default {
 
 .cart-modal__close {
   position: absolute;
-  top: 32px;
-  right: 40px;
+  top: 24px;
+  right: 30px;
   background: none;
   border: none;
   font-size: 18px;
@@ -228,6 +228,10 @@ export default {
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
+
+  @media (max-width: 601px) {
+    right: 16px;
+  }
 }
 
 .cart-modal__item-count,
@@ -235,9 +239,6 @@ export default {
   font-size: 14px;
   margin: 0 0 15px;
   display: inline-block;
-}
-
-.cart-modal__item-count {
 }
 
 .cart-modal__title {
@@ -291,10 +292,13 @@ export default {
   min-width: 165px;
   margin-right: 3.23vw;
 
-  @media (max-width: 601px) {
+  @media (max-width: 530px) {
     min-width: 125px;
-    max-width: 145px;
     margin-right: 0;
+  }
+
+  @media (max-width: 376px) {
+    max-width: 145px;
   }
 }
 
@@ -330,7 +334,7 @@ export default {
   justify-content: center;
   margin-right: 37px;
 
-  @media (max-width: 601px) {
+  @media (max-width: 476px) {
     margin-right: 4px;
     flex-direction: column;
     gap: 8px;
