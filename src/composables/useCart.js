@@ -6,7 +6,7 @@ export function useCart() {
 
   const cartItemCount = computed(() => cartStore.cartItemCount);
   const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
-  const cartItems = computed(() => cartStore.cartItems);
+  const cartItems = computed(() => cartStore.cartItemsList);
 
   const clearCart = () => {
     cartStore.clearCart();
@@ -14,7 +14,7 @@ export function useCart() {
 
   const decreaseQuantity = (productId) => {
     const cartItem = cartStore.cartItems[productId];
-    if (cartItem) {
+    if (cartItem && !cartItem.removed) {
       const currentQuantity = cartItem.quantity;
       cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
     }
@@ -22,7 +22,7 @@ export function useCart() {
 
   const increaseQuantity = (productId) => {
     const cartItem = cartStore.cartItems[productId];
-    if (cartItem) {
+    if (cartItem && !cartItem.removed) {
       const currentQuantity = cartItem.quantity;
       cartStore.updateCartItemQuantity(productId, currentQuantity + 1);
     }

@@ -6,11 +6,15 @@ export const useCartStore = defineStore('cart', {
     }),
     getters: {
         cartItemCount(state) {
-            return Object.values(state.cartItems).reduce((total, item) => total + item.quantity, 0);
+            return Object.values(state.cartItems).reduce((total, item) => {
+                return !item.removed ? total + item.quantity : total;
+            }, 0);
         },
         cartTotalPrice(state) {
             const total = Object.values(state.cartItems).reduce(
-                (sum, item) => sum + item.product.price * item.quantity,
+                (sum, item) => {
+                    return !item.removed ? sum + item.product.price * item.quantity : sum;
+                },
                 0
             );
             return total.toLocaleString('ru-RU');
@@ -23,6 +27,7 @@ export const useCartStore = defineStore('cart', {
         addToCart(product) {
             if (this.cartItems[product.id]) {
                 this.cartItems[product.id].quantity += 1;
+                this.cartItems[product.id].removed = false; // Если товар был удален ранее, восстанавливаем его
             } else {
                 this.cartItems[product.id] = {
                     product,
@@ -37,10 +42,10 @@ export const useCartStore = defineStore('cart', {
             }
         },
         updateCartItemQuantity(productId, quantity) {
-            if (this.cartItems[productId]) {
+            if (this.cartItems[productId] && !this.cartItems[productId].removed) {
                 this.cartItems[productId].quantity = quantity;
                 if (quantity <= 0) {
-                    delete this.cartItems[productId];
+                    this.cartItems[productId].removed = true;
                 }
             }
         },
