@@ -41,7 +41,7 @@ export default {
 .cart__count {
   position: absolute;
   top: 0px;
-  right: 0.7px;
+  right: -1px;
   min-width: 24px;
   min-height: 24px;
   background: rgba(123, 184, 153, 1);
@@ -53,6 +53,10 @@ export default {
   line-height: 14.52px;
   letter-spacing: 0.06em;
   text-align: center;
+
+  @media(max-width: 769px) {
+    right: 1px;
+  }
 }
 
 .cart__icon {

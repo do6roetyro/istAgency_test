@@ -27,7 +27,9 @@
     </template>
 
 <script>
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   props: {
     cartItems: {
       type: Array,
@@ -40,21 +42,31 @@ export default {
     "remove-item",
     "restore-item",
   ],
-  methods: {
-    decreaseQuantity(productId) {
-      this.$emit("decrease-quantity", productId);
-    },
-    increaseQuantity(productId) {
-      this.$emit("increase-quantity", productId);
-    },
-    removeItem(productId) {
-      this.$emit("remove-item", productId);
-    },
-    restoreItem(productId) {
-      this.$emit("restore-item", productId);
-    },
+  setup(props, { emit }) {
+    const decreaseQuantity = (productId) => {
+      emit("decrease-quantity", productId);
+    };
+
+    const increaseQuantity = (productId) => {
+      emit("increase-quantity", productId);
+    };
+
+    const removeItem = (productId) => {
+      emit("remove-item", productId);
+    };
+
+    const restoreItem = (productId) => {
+      emit("restore-item", productId);
+    };
+
+    return {
+      decreaseQuantity,
+      increaseQuantity,
+      removeItem,
+      restoreItem,
+    };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
