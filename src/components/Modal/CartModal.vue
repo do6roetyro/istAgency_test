@@ -69,7 +69,6 @@ export default {
       getDeclension(cartItemCount.value, "товар", "товара", "товаров")
     );
 
-
     const clearCart = () => {
       cartStore.clearCart();
     };
@@ -203,10 +202,17 @@ export default {
   position: relative;
   background: #fff;
   padding: 30px;
+  /* width: 31.25vw; */
   width: 600px;
+  min-width: 375px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
-  height: 100%;
+  height: 100dvh;
+
+  @media (max-width: 601px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .cart-modal__close {
@@ -283,7 +289,13 @@ export default {
 .cart-modal__item-details {
   flex-grow: 1;
   min-width: 165px;
-  margin-right: 62px;
+  margin-right: 3.23vw;
+
+  @media (max-width: 601px) {
+    min-width: 125px;
+    max-width: 145px;
+    margin-right: 0;
+  }
 }
 
 .cart-modal__item-name {
@@ -294,6 +306,10 @@ export default {
   font-weight: 300;
   line-height: 17.92px;
   letter-spacing: 0.02em;
+
+  @media (max-width: 769px) {
+    font-size: 12px;
+  }
 }
 
 .cart-modal__item-price {
@@ -301,6 +317,10 @@ export default {
   font-weight: 600;
   line-height: 16px;
   color: #1f2020;
+
+  @media (max-width: 769px) {
+    width: fit-content;
+  }
 }
 
 .cart-item__controls {
@@ -309,6 +329,24 @@ export default {
   gap: 17px;
   justify-content: center;
   margin-right: 37px;
+
+  @media (max-width: 601px) {
+    margin-right: 4px;
+    flex-direction: column;
+    gap: 8px;
+
+    :nth-child(1) {
+      order: 3;
+    }
+
+    :nth-child(2) {
+      order: 2;
+    }
+
+    :nth-child(3) {
+      order: 1;
+    }
+  }
 }
 
 .cart-item__control-button {
@@ -398,6 +436,10 @@ export default {
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
+
+  @media (max-width: 769px) {
+    padding: 10px 24px;
+  }
 }
 
 .cart-item__icon-container {
