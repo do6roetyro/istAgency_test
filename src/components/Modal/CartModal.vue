@@ -15,7 +15,8 @@
           )
             img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
             div.cart-modal__item-details
-              h3.cart-modal__item-name {{ item.product.name }}
+              h3.cart-modal__item-name 
+                a.cart-modal__item-link {{ item.product.name }}
               p.cart-modal__item-price {{ item.product.price }} ₽
             div.cart-item__controls
               button.cart-item__control-button(:disabled="item.removed" @click="decreaseQuantity(item.product.id)") -
@@ -228,6 +229,7 @@ export default {
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
+  color: #1f2020;
 
   @media (max-width: 601px) {
     right: 16px;
@@ -278,6 +280,13 @@ export default {
   &:first-child {
     border-top: 1px solid #f0f0f0;
   }
+}
+
+.cart-modal__item-link {
+ cursor: pointer;
+ &:hover {
+  opacity: 0.8;
+ }
 }
 
 .cart-modal__item-image {
@@ -432,6 +441,7 @@ export default {
   background-color: #7bb899;
   border: none;
   border-radius: 4px;
+  color: #1f2020;
   cursor: pointer;
   font-family: "Inter";
   font-size: 12px;

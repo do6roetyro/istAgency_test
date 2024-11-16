@@ -51,6 +51,10 @@ export default {
   }
 }
 
+.product-card__link {
+  cursor: pointer;
+}
+
 .product-card__image {
   height: 278px;
   display: flex;
@@ -106,6 +110,7 @@ export default {
   padding: 2px 30px;
   border-radius: 8px;
   cursor: pointer;
+  color: #1f2020;
   transition: background-color 0.15s;
 
   &:hover {

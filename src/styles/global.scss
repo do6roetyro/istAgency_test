@@ -68,6 +68,7 @@ a {
 
 .page {
   height: 100%;
+  touch-action: manipulation;
 }
 
 .page__body {
