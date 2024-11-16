@@ -15,7 +15,7 @@
           @restore-item="restoreItem"
         )
         CartFooter(
-          :cart-total-price="cartTotalPrice"
+          :cart-item-count="cartItemCount"
           @checkout="checkout"
         )
   </template>

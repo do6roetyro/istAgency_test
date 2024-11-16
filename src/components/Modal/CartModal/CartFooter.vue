@@ -3,18 +3,26 @@
       p.cart-modal__total 
         span Итого 
         span {{ cartTotalPrice }} ₽
-      button.cart-modal__checkout(@click="checkout") Оформить заказ
+      button.cart-modal__checkout(
+        @click="checkout"
+        :disabled="isCheckoutDisabled"
+      ) Оформить заказ
     </template>
 
 <script>
 export default {
   props: {
-    cartTotalPrice: {
+    cartItemCount: {
       type: Number,
       required: true,
     },
   },
   emits: ["checkout"],
+  computed: {
+    isCheckoutDisabled() {
+      return this.cartItemCount === 0;
+    },
+  },
   methods: {
     checkout() {
       this.$emit("checkout");
@@ -75,6 +83,11 @@ export default {
 
   &:hover {
     background-color: #92ccaf;
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
   }
 }
 </style>
