@@ -143,22 +143,25 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
   color: #fff;
-  width: 472px;
+  width: clamp(380px,10vw,472px);
 }
 
 .hero__title {
   font-size: 72px;
+  font-size: 3.75vw;
+  font-size: clamp(36px, 4vw, 72px);
   font-weight: 400;
-  line-height: 63.36px;
+  line-height: 3.3vw;
   letter-spacing: -0.02em;
   margin: 0;
   padding-bottom: 24px;
 }
 
 .hero__description {
-  font-size: 16px;
+  font-size: clamp(10px, 1.2vw, 16px);
   font-weight: 500;
-  line-height: 20.8px;
+  line-height: 21px;
+  line-height: clamp(17px, 1.7vw, 21px);
   letter-spacing: 0.02em;
   text-wrap: initial;
   margin: 0;
@@ -187,23 +190,23 @@ export default {
 
   &--next {
     transform: rotate(180deg);
-    right: 54px;
+    right: 2.8vw;
   }
 
   &--prev {
-    left: 54px;
+    left: 2.8vw;
   }
 }
 
 .hero__pagination {
   position: absolute;
-  bottom: 39px;
+  bottom: 2vw;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 0.42vw;
   z-index: 1;
-  padding: 13px 24px;
+  padding: 0.7vw 1.25vw;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 16px;
   @media (max-width: 769px) {
@@ -212,8 +215,10 @@ export default {
 }
 
 .hero__dot {
-  width: 6px;
-  height: 6px;
+  width: 0.3vw;
+  min-width: 4px;
+  height: 0.3vw;
+  min-height: 4px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
@@ -226,8 +231,8 @@ export default {
 
 .hero__breadcrumbs {
   position: absolute;
-  top: 32px;
-  left: 64px;
+  top: 1.67vw;
+  left: 3.33vw;
 
   @media (max-width: 769px) {
     position: relative;
