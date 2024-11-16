@@ -1,30 +1,30 @@
 <template lang="pug">
-    ul.cart-modal__list
-      li.cart-modal__item(
-        :class="{ 'cart-modal__item--removed': item.removed }"
-        v-for="item in cartItems"
-        :key="item.product.id"
-      )
-        img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
-        div.cart-modal__item-details
-          h3.cart-modal__item-name 
-            a.cart-modal__item-link {{ item.product.name }}
-          p.cart-modal__item-price {{ item.product.price }} ₽
-        div.cart-item__controls
-          button.cart-item__control-button(:disabled="item.removed" @click="decreaseQuantity(item.product.id)") -
-          span.cart-item__quantity {{ item.quantity }}
-          button.cart-item__control-button(:disabled="item.removed" @click="increaseQuantity(item.product.id)") +
-        div.cart-item__action
-          button.cart-item__remove(
-            v-if="!item.removed"
-            @click="removeItem(item.product.id)"
-          ) ✕
-          div.cart-item__icon-container(v-if="item.removed" @click="restoreItem(item.product.id)")              
-            span.visually-hidden восстановить
-            svg.cart-item__icon(width="24" height="24")
-              use(xlink:href="#icon-repeat")
-        div.cart-item__overlay(v-if="item.removed")
-    </template>
+  ul.cart-modal__list
+    li.cart-modal__item(
+      :class="{ 'cart-modal__item--removed': item.removed }"
+      v-for="item in cartItems"
+      :key="item.product.id"
+    )
+      img.cart-modal__item-image(:src="item.product.imageUrl", :alt="item.product.name")
+      div.cart-modal__item-details
+        h3.cart-modal__item-name 
+          a.cart-modal__item-link {{ item.product.name }}
+        p.cart-modal__item-price {{ item.product.price }} ₽
+      div.cart-item__controls
+        button.cart-item__control-button(:disabled="item.removed" @click="decreaseQuantity(item.product.id)") -
+        span.cart-item__quantity {{ item.quantity }}
+        button.cart-item__control-button(:disabled="item.removed" @click="increaseQuantity(item.product.id)") +
+      div.cart-item__action
+        button.cart-item__remove(
+          v-if="!item.removed"
+          @click="removeItem(item.product.id)"
+        ) ✕
+        div.cart-item__icon-container(v-if="item.removed" @click="restoreItem(item.product.id)")              
+          span.visually-hidden восстановить
+          svg.cart-item__icon(width="24" height="24")
+            use(xlink:href="#icon-repeat")
+      div.cart-item__overlay(v-if="item.removed")
+</template>
 
 <script>
 import { defineComponent } from "vue";

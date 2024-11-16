@@ -19,14 +19,15 @@
           :cart-item-count="cartItemCount"
           @checkout="checkout"
         )
-  </template>
+</template>
+
 <script>
 import CartList from "./CartList.vue";
 import CartFooter from "./CartFooter.vue";
-import { useCartStore } from "@/store/cartStore";
 import { computed, watch } from "vue";
 import { removeNoScroll, addNoScroll } from "@/utilites/noScroll";
 import { getDeclension } from "@/utilites/getDeclension";
+import { useCart } from "@/composables/useCart";
 
 export default {
   components: {
@@ -40,60 +41,33 @@ export default {
     },
   },
   emits: ["close-cart"],
-
   setup(props, { emit }) {
-    const cartStore = useCartStore();
+    const {
+      cartItemCount,
+      cartTotalPrice,
+      cartItems,
+      clearCart,
+      decreaseQuantity,
+      increaseQuantity,
+      removeItem,
+      restoreItem,
+      checkout,
+    } = useCart();
 
-    // Методы управления корзиной
-    const cartItemCount = computed(() => cartStore.cartItemCount);
-    const cartTotalPrice = computed(() => cartStore.cartTotalPrice);
-    const cartItems = computed(() => cartStore.cartItems);
-
-    // Сложение склонений
     const itemCountLabel = computed(() =>
       getDeclension(cartItemCount.value, "товар", "товара", "товаров")
     );
-
-    const clearCart = () => {
-      cartStore.clearCart();
-    };
-
-    const decreaseQuantity = (productId) => {
-      const cartItem = cartStore.cartItems[productId];
-      if (cartItem) {
-        const currentQuantity = cartItem.quantity;
-        cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
-      }
-    };
-
-    const increaseQuantity = (productId) => {
-      const cartItem = cartStore.cartItems[productId];
-      if (cartItem) {
-        const currentQuantity = cartItem.quantity;
-        cartStore.updateCartItemQuantity(productId, currentQuantity + 1);
-      }
-    };
-
-    const removeItem = (productId) => {
-      cartStore.toggleRemovedStatus(productId);
-    };
-
-    const restoreItem = (productId) => {
-      cartStore.toggleRemovedStatus(productId);
-    };
-
-    const checkout = () => {
-      alert("Заказ оформлен");
-      cartStore.clearCart();
-      closeCart();
-    };
 
     const closeCart = () => {
       emit("close-cart");
       removeNoScroll();
     };
 
-    // Watch для изменения состояния модального окна
+    const modifiedCheckout = () => {
+      checkout();
+      closeCart();
+    };
+
     watch(
       () => props.isOpen,
       (newVal) => {
@@ -103,7 +77,7 @@ export default {
           removeNoScroll();
         }
       },
-      { immediate: true } // Запускаем при инициализации
+      { immediate: true }
     );
 
     return {
@@ -117,7 +91,7 @@ export default {
       increaseQuantity,
       removeItem,
       restoreItem,
-      checkout,
+      checkout: modifiedCheckout,
     };
   },
 };
