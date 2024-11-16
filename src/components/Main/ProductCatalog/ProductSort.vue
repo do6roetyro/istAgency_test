@@ -119,7 +119,7 @@ export default {
 
 .sort__dropdown {
   position: absolute;
-  top: 0;
+  top: -3px;
   left: 0;
   background-color: #fff;
   width: 100%;
