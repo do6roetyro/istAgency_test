@@ -27,13 +27,13 @@ export default {
   font-weight: 400;
   line-height: 14px;
   letter-spacing: 0.06em;
-  color: #1F2020;
+  color: $primary-color;
   text-transform: uppercase;
   display: flex;
   gap: 0.63vw;
   margin: 0;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     flex-direction: column;
     gap: 16px;
   }

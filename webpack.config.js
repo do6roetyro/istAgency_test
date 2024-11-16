@@ -15,7 +15,7 @@ module.exports = {
   resolve: {
     alias: {
       vue: "vue/dist/vue.esm-bundler.js",
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     },
     extensions: [".js", ".vue"],
   },
@@ -37,6 +37,12 @@ module.exports = {
             : "vue-style-loader",
           "css-loader",
           "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: path.resolve(__dirname, "src/styles/variables.scss"),
+            },
+          },
         ],
       },
       {
@@ -59,21 +65,23 @@ module.exports = {
       },
       // Правило для оптимизации изображений только в production
       ...(process.env.NODE_ENV === "production"
-        ? [{
-            test: /\.(png|jpg|jpeg|gif)$/i,
-            include: path.resolve(__dirname, "src/assets/images"),
-            use: [
-              {
-                loader: "image-webpack-loader",
-                options: {
-                  mozjpeg: { progressive: true, quality: 75 },
-                  optipng: { enabled: true },
-                  pngquant: { quality: [0.65, 0.9], speed: 4 },
-                  gifsicle: { interlaced: false },
+        ? [
+            {
+              test: /\.(png|jpg|jpeg|gif)$/i,
+              include: path.resolve(__dirname, "src/assets/images"),
+              use: [
+                {
+                  loader: "image-webpack-loader",
+                  options: {
+                    mozjpeg: { progressive: true, quality: 75 },
+                    optipng: { enabled: true },
+                    pngquant: { quality: [0.65, 0.9], speed: 4 },
+                    gifsicle: { interlaced: false },
+                  },
                 },
-              },
-            ],
-          }]
+              ],
+            },
+          ]
         : []),
       {
         test: /\.svg$/,

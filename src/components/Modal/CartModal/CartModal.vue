@@ -162,7 +162,7 @@ export default {
   padding: 8px;
   padding-left: 12px;
   padding-right: 12px;
-  color: #1f2020;
+  color: $primary-color;
 
   @media (max-width: 601px) {
     right: 16px;
@@ -197,7 +197,7 @@ export default {
   float: right;
 
   &:hover {
-    color: #1f2020;
+    color: $primary-color;
   }
 
   &:disabled {

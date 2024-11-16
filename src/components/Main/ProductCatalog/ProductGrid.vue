@@ -25,7 +25,7 @@ export default {
 .product-grid {
   width: 100%;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     padding: 2.4vw;
   }
 }
@@ -37,12 +37,11 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
   gap: 2px;
+
   @media (max-width: 940px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  // @media (max-width: 769px) {
-  //   grid-template-columns: repeat(auto-fill, minmax(px, 1fr));
-  // }
+
   @media (max-width: 425px) {
     grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   }
@@ -57,7 +56,7 @@ export default {
   margin: 0;
   padding-bottom: 44px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
   display: none;
 }
 }

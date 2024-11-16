@@ -132,7 +132,7 @@ export default {
   padding: 17px 24px;
   cursor: pointer;
   &:hover {
-    background-color: #7bb899;
+    background-color: $secondary-color;
   }
 }
 </style>

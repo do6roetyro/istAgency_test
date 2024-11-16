@@ -67,7 +67,6 @@ a {
 }
 
 .page {
-  // height: 100%;
   touch-action: manipulation;
 }
 
@@ -79,7 +78,7 @@ a {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: #1f2020;
+  color: $primary-color;
   text-wrap: balance;
   min-height: 100%;
   background-color: #f2f2f2;
@@ -126,10 +125,10 @@ a {
 
 .no-scroll {
   overflow: hidden !important;
-  position: fixed !important; // Зафиксировать страницу
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh; // Высота ограничивается окном
-  width: 100vw; // Ширина ограничивается окном
+  height: 100vh;
+  width: 100vw;
 }

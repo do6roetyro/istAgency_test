@@ -33,7 +33,7 @@ export default defineComponent({
   padding-bottom: 141px;
   position: relative;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     padding-top: 132px;
   }
 }

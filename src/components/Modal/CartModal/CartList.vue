@@ -113,13 +113,13 @@ export default defineComponent({
 .cart-modal__item-name {
   font-weight: 500;
   margin: 0;
-  color: #1f2020;
+  color: $primary-color;
   font-size: 16px;
   font-weight: 300;
   line-height: 17.92px;
   letter-spacing: 0.02em;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     font-size: 12px;
   }
 }
@@ -135,9 +135,9 @@ export default defineComponent({
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
-  color: #1f2020;
+  color: $primary-color;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     width: fit-content;
   }
 }
@@ -197,7 +197,7 @@ export default defineComponent({
   background: none;
   border: none;
   font-size: 18px;
-  color: #1f2020;
+  color: $primary-color;
   cursor: pointer;
   opacity: 0.2;
 

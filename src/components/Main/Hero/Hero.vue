@@ -124,7 +124,7 @@ export default defineComponent({
   position: relative;
   width: 100%;
   overflow: hidden;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     overflow: visible;
     min-height: 64px;
   }
@@ -132,7 +132,7 @@ export default defineComponent({
 
 .hero__slider {
   display: flex;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: none;
   }
 }
@@ -192,7 +192,7 @@ export default defineComponent({
   justify-content: space-between;
   transform: translateY(-50%);
   z-index: 1;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: none;
   }
 }
@@ -226,7 +226,7 @@ export default defineComponent({
   padding: 0.7vw 1.25vw;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 16px;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: none;
   }
 }
@@ -251,9 +251,9 @@ export default defineComponent({
   top: 1.67vw;
   left: 3.33vw;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     position: relative;
-    color: #1f2020;
+    color: $primary-color;
     top: 16px;
     left: 3.3vw;
   }

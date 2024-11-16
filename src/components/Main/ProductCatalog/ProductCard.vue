@@ -62,7 +62,7 @@ export default {
   align-items: center;
   margin-bottom: 16px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
    height: 156px;
   }
 }
@@ -106,18 +106,18 @@ export default {
   display: none;
   font-size: 24px;
   border: none;
-  background-color: #7BB899;
+  background-color: $secondary-color;
   padding: 2px 30px;
   border-radius: 8px;
   cursor: pointer;
-  color: #1f2020;
+  color: $primary-color;
   transition: background-color 0.15s;
 
   &:hover {
     background-color: #92ccaf;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: block;
     font-size: 20px;
     padding: 4px 14px;

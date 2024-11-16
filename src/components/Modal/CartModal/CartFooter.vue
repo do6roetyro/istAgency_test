@@ -71,10 +71,10 @@ export default defineComponent({
 
 .cart-modal__checkout {
   padding: 20px 57px;
-  background-color: #7bb899;
+  background-color: $secondary-color;
   border: none;
   border-radius: 4px;
-  color: #1f2020;
+  color: $primary-color;
   cursor: pointer;
   font-family: "Inter";
   font-size: 12px;
@@ -85,7 +85,7 @@ export default defineComponent({
   text-transform: uppercase;
   transition: background-color 0.15s;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     padding: 10px 24px;
   }
 

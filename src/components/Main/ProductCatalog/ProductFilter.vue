@@ -28,6 +28,7 @@ export default {
     ToggleSwitch,
   },
   setup() {
+    const MOBILE_RESOLUTION = 769;
     const catalogStore = useCatalogStore();
     const filters = catalogStore.filters;
     const isMenuOpen = ref(false);
@@ -76,7 +77,7 @@ export default {
       }
     };
 
-    const isMobileView = computed(() => windowWidth.value <= 769);
+    const isMobileView = computed(() => windowWidth.value <= MOBILE_RESOLUTION);
 
     const updateWindowWidth = () => {
       windowWidth.value = window.innerWidth;
@@ -109,7 +110,7 @@ export default {
 .filter {
   position: relative;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     position: absolute;
     top: 56px;
   }
@@ -136,7 +137,7 @@ export default {
   display: none;
   /* Скрыт по умолчанию */
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: block;
     position: relative;
     left: 14px;
@@ -154,7 +155,7 @@ export default {
   flex-direction: column;
   gap: 10px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     padding-top: 54px;
     padding-left: 24px;
     padding-right: 24px;
@@ -171,7 +172,7 @@ export default {
       content: "";
       width: 28px;
       height: 4px;
-      background-color: #1f2020;
+      background-color: $primary-color;
       opacity: 0.6;
       border-radius: 40px;
       top: 12px;
@@ -192,7 +193,7 @@ export default {
   align-items: center;
   gap: 10px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     width: fit-content;
   }
 }

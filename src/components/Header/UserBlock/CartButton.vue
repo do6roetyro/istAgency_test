@@ -41,7 +41,7 @@ export default {
 .cart__count {
   position: absolute;
   top: 0px;
-  right: -1px;
+  right: 0px;
   min-width: 24px;
   min-height: 24px;
   background: rgba(123, 184, 153, 1);
@@ -54,7 +54,7 @@ export default {
   letter-spacing: 0.06em;
   text-align: center;
 
-  @media(max-width: 769px) {
+  @media(max-width: $mobile-resolution) {
     right: 1px;
   }
 }
@@ -63,7 +63,7 @@ export default {
   width: clamp(16px, 2.3vw, 24px);
   height: clamp(16px, 2.3vw, 24px);
 
-  @media(max-width: 769px) {
+  @media(max-width: $mobile-resolution) {
     width: 24px;
     height: 24px;
   }

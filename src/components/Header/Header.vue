@@ -75,7 +75,7 @@ export default {
   align-items: center;
   padding-top: clamp(21px, 3vw, 36px);
   padding-bottom: clamp(21px, 3vw, 36px);
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     border-bottom: 1px solid rgba(31, 32, 32, 0.06);
     padding-left: 0;
     padding-right: 0;
@@ -85,7 +85,7 @@ export default {
 }
 
 .header__logo {
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     margin: 0 auto;
   }
 }
@@ -97,21 +97,21 @@ export default {
   @media (max-width: 1024px) {
     gap: 3vw;
   }
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: none; // Скрываем на мобильных экранах
   }
 }
 
 .header__navigation--desktop {
   display: flex;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: none; // скрываем только на мобильных экранах для десктопной версии
   }
 }
 
 .header__navigation--mobile {
   display: none; // скрыта по умолчанию
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: flex; // показываем только в бургер-меню на мобильных экранах
     flex-direction: column;
   }
@@ -120,7 +120,7 @@ export default {
 .header__cart,
 .header__burger {
   display: none;
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: block;
   }
 }
@@ -138,6 +138,5 @@ export default {
   gap: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  // border-top: 0.5px solid #1f2020;
 }
 </style>

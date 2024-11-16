@@ -12,7 +12,7 @@
   font-weight: 500;
   line-height: clamp(10px, 1.2vw, 16px);
   letter-spacing: -0.02em;
-  color: #1F2020;
+  color: $primary-color;
   display: block;
 }
 

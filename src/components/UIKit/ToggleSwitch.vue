@@ -57,7 +57,7 @@ export default defineComponent({
 
 .toggle__switch {
   height: 22px;
-  background-color: rgba(242, 242, 242, 1);
+  background-color: #f2f2f2;
   border-radius: 12px;
   position: relative;
   transition: background-color 0.3s ease;

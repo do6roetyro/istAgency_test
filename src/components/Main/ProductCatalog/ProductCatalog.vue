@@ -37,7 +37,7 @@ export default {
 }
 
 .product-catalog.wrapper {
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     padding-left: 0;
     padding-right: 0;
   }
@@ -58,7 +58,7 @@ export default {
   margin-right: 138px;
   width: 165px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     margin-right: 0;
   }
 }
@@ -72,7 +72,7 @@ export default {
   top: -42px;
   left: 24px;
 
-  @media (max-width: 769px) {
+  @media (max-width: $mobile-resolution) {
     display: block;
   }
 }
