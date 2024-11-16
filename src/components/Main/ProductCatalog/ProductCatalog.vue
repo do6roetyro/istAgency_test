@@ -37,8 +37,10 @@ export default {
 }
 
 .product-catalog.wrapper {
-  padding-left: 0;
-  padding-right: 0;
+  @media (max-width: 769px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .product-catalog__controls {

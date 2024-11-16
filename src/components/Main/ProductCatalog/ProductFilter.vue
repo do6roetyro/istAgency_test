@@ -119,7 +119,7 @@ export default {
     position: absolute;
     width: 100vw;
     height: 80dvh;
-    top: 160px;
+    top: 0;
     z-index: 999;
     background-color: #ffffff;
     border-radius: 24px 0;
@@ -148,6 +148,10 @@ export default {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 769px) {
+    width: fit-content;
+  }
 }
 
 /* Анимация для меню */

@@ -129,7 +129,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  top: 72px;
+  top: 74px;
   width: 100%;
   background-color: #fff;
   padding: 20px;
@@ -138,6 +138,6 @@ export default {
   gap: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  border-top: 0.5px solid #1f2020;
+  // border-top: 0.5px solid #1f2020;
 }
 </style>
