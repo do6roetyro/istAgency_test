@@ -1,16 +1,16 @@
 <template lang="pug">
     div.user-block
-      Search.user-block__search.search
-      User.user-block__user.user
-      Favorites.user-block__favourites.favourites
-      CartButton.user-block__cart.cart(@open-cart="openCart")
+      Search.user-block__search
+      User.user-block__user
+      Favorites.user-block__favourites
+      CartButton.user-block__cart(@open-cart="openCart")
     </template>
 
 <script>
-import Search from './Search.vue';
-import User from './User.vue';
-import Favorites from './Favorites.vue';
-import CartButton from './CartButton.vue';
+import Search from "./Search.vue";
+import User from "./User.vue";
+import Favorites from "./Favorites.vue";
+import CartButton from "./CartButton.vue";
 
 export default {
   components: {
@@ -32,7 +32,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .user-block {
   display: flex;
@@ -40,11 +39,13 @@ export default {
   justify-content: space-between;
   gap: 1.25vw;
 
-  &>* {
+  & > * {
     transition: opacity 0.15s;
 
-    &:hover {
-      opacity: 0.7;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 }

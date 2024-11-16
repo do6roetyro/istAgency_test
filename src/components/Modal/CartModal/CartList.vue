@@ -126,8 +126,10 @@ export default defineComponent({
 
 .cart-modal__item-link {
   cursor: pointer;
-  &:hover {
-    opacity: 0.8;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -183,8 +185,10 @@ export default defineComponent({
   border-radius: 4px;
   transition: background-color 0.15s;
 
-  &:hover {
-    background-color: #bbbbbb;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: #bbbbbb;
+    }
   }
 }
 
@@ -201,8 +205,10 @@ export default defineComponent({
   cursor: pointer;
   opacity: 0.2;
 
-  &:hover {
-    opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

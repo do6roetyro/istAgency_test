@@ -19,8 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .breadcrumbs {
-
-  
   color: #d1d1d1;
   display: flex;
   align-items: center;
@@ -48,9 +46,11 @@ export default {
   text-decoration: none;
   transition: color 0.3s, opacity 0.3s;
 
-  &:hover {
-    color: #ffffff;
-    opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: #ffffff;
+      opacity: 1;
+    }
   }
 }
 

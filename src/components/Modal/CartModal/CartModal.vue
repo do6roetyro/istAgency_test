@@ -196,8 +196,10 @@ export default {
   margin-left: auto;
   float: right;
 
-  &:hover {
-    color: $primary-color;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $primary-color;
+    }
   }
 
   &:disabled {

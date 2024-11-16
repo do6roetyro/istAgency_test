@@ -89,8 +89,10 @@ export default defineComponent({
     padding: 10px 24px;
   }
 
-  &:hover {
-    background-color: #92ccaf;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: #92ccaf;
+    }
   }
 
   &:disabled {

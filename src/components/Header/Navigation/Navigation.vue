@@ -10,16 +10,21 @@ export default {
   props: {
     isDropdown: {
       type: Boolean,
-      default: false
+      default: false,
     },
     navItems: {
       type: Array,
-      default: () => ["Продукты", "Цвета", "Вдохновение", "Советы", "Найти магазин"]
-    }
-  }
+      default: () => [
+        "Продукты",
+        "Цвета",
+        "Вдохновение",
+        "Советы",
+        "Найти магазин",
+      ],
+    },
+  },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .navigation__list {
@@ -43,8 +48,10 @@ export default {
   padding: 6px;
   transition: opacity 0.15s;
 
-  &:hover {
-    opacity: 0.7;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 </style>

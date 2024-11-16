@@ -131,8 +131,11 @@ export default {
 .sort__item {
   padding: 17px 24px;
   cursor: pointer;
-  &:hover {
-    background-color: $secondary-color;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $secondary-color;
+    }
   }
 }
 </style>

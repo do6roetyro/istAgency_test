@@ -46,8 +46,10 @@ export default {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
   }
 }
 
@@ -63,7 +65,7 @@ export default {
   margin-bottom: 16px;
 
   @media (max-width: $mobile-resolution) {
-   height: 156px;
+    height: 156px;
   }
 }
 
@@ -113,8 +115,10 @@ export default {
   color: $primary-color;
   transition: background-color 0.15s;
 
-  &:hover {
-    background-color: #92ccaf;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: #92ccaf;
+    }
   }
 
   @media (max-width: $mobile-resolution) {
@@ -123,8 +127,10 @@ export default {
     padding: 4px 14px;
     background-color: #f2f2f2;
 
-    &:hover {
-      background-color: #bbbbbb;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: #bbbbbb;
+      }
     }
   }
 }

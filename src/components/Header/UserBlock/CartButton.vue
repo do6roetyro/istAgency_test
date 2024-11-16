@@ -1,9 +1,9 @@
 <template lang="pug">
-  button.cart__button(@click="openCart")
+  button.cart-button(@click="openCart")
     span.visually-hidden корзина
-    svg.cart__icon(width="24" height="24")
+    svg.cart-button__icon(width="24" height="24")
       use(xlink:href="#icon-cart")
-    span.cart__count(v-if="cartItemCount > 0") {{ cartItemCount }}
+    span.cart-button__count(v-if="cartItemCount > 0") {{ cartItemCount }}
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cart__button {
+.cart-button {
   position: relative;
   border: none;
   background-color: transparent;
@@ -38,12 +38,12 @@ export default {
   padding: 0;
 }
 
-.cart__count {
+.cart-button__count {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  min-width: 24px;
-  min-height: 24px;
+  top: -2px;
+  right: -2px;
+  min-width: 25px;
+  min-height: 25px;
   background: rgba(123, 184, 153, 1);
   color: rgba(31, 32, 32, 1);
   border-radius: 50px;
@@ -54,16 +54,17 @@ export default {
   letter-spacing: 0.06em;
   text-align: center;
 
-  @media(max-width: $mobile-resolution) {
-    right: 1px;
+  @media (max-width: $mobile-resolution) {
+    right: 0;
+    top: 0;
   }
 }
 
-.cart__icon {
+.cart-button__icon {
   width: clamp(16px, 2.3vw, 24px);
   height: clamp(16px, 2.3vw, 24px);
 
-  @media(max-width: $mobile-resolution) {
+  @media (max-width: $mobile-resolution) {
     width: 24px;
     height: 24px;
   }

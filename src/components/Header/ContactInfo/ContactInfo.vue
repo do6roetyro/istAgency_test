@@ -22,8 +22,10 @@
   opacity: 0.3;
   transition: opacity 0.15s;
 
-  &:hover {
-    opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 </style>
