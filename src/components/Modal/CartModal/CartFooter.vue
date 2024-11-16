@@ -4,31 +4,39 @@
         span Итого 
         span {{ cartTotalPrice }} ₽
       button.cart-modal__checkout(
-        @click="checkout"
+        @click="emitCheckout"
         :disabled="isCheckoutDisabled"
       ) Оформить заказ
     </template>
 
 <script>
-export default {
+import { defineComponent, computed } from "vue";
+
+export default defineComponent({
   props: {
+    cartTotalPrice: {
+      type: Number,
+      required: true,
+    },
     cartItemCount: {
       type: Number,
       required: true,
     },
   },
   emits: ["checkout"],
-  computed: {
-    isCheckoutDisabled() {
-      return this.cartItemCount === 0;
-    },
+  setup(props, { emit }) {
+    const isCheckoutDisabled = computed(() => props.cartItemCount === 0);
+
+    const emitCheckout = () => {
+      emit("checkout");
+    };
+
+    return {
+      isCheckoutDisabled,
+      emitCheckout,
+    };
   },
-  methods: {
-    checkout() {
-      this.$emit("checkout");
-    },
-  },
-};
+});
 </script>
 
 <style lang="scss" scoped>
