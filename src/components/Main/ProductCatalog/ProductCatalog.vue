@@ -36,6 +36,11 @@ export default {
   width: 100%;
 }
 
+.product-catalog.wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .product-catalog__controls {
   display: flex;
   flex-direction: column;
@@ -63,6 +68,7 @@ export default {
   line-height: 31.68px;
   letter-spacing: -0.04em;
   top: -42px;
+  left: 24px;
 
   @media (max-width: 769px) {
     display: block;

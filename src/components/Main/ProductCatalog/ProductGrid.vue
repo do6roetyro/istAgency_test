@@ -24,6 +24,10 @@ export default {
 <style lang="scss" scoped>
 .product-grid {
   width: 100%;
+
+  @media (max-width: 769px) {
+    padding: 2.4vw;
+  }
 }
 
 .product-grid__list {
@@ -36,7 +40,10 @@ export default {
   @media (max-width: 940px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  @media (max-width: 769px) {
+  // @media (max-width: 769px) {
+  //   grid-template-columns: repeat(auto-fill, minmax(px, 1fr));
+  // }
+  @media (max-width: 425px) {
     grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
   }
 }

@@ -91,6 +91,7 @@ export default {
   z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 5px;
 
   &::after {

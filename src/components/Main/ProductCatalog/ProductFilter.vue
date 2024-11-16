@@ -96,7 +96,14 @@ export default {
 
   @media (max-width: 769px) {
     display: block;
-    /* Отображается только на планшетах и мобильных */
+    position: relative;
+    left: 14px;
+    border: none;
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.52px;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -107,13 +114,28 @@ export default {
 
   @media (max-width: 769px) {
     padding-top: 54px;
+    padding-left: 24px;
+    padding-right: 24px;
     position: absolute;
     width: 100vw;
-    height: 80vh;
+    height: 80dvh;
     top: 160px;
     z-index: 999;
     background-color: #ffffff;
     border-radius: 24px 0;
+
+    &::before {
+      content: "";
+      width: 28px;
+      height: 4px;
+      background-color: #1f2020;
+      opacity: 0.6;
+      border-radius: 40px;
+      top: 12px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 
