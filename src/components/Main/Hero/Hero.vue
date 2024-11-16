@@ -35,71 +35,88 @@
 </template>
 
 <script>
+import { defineComponent, ref } from "vue";
 import { nextSlide, prevSlide, goToSlide } from "@/utilites/slider.js";
 import HeroBreadcrumbs from "./HeroBreadcrumbs.vue";
 
-export default {
+export default defineComponent({
+  name: "Hero",
   components: {
     HeroBreadcrumbs,
   },
-  data() {
-    return {
-      currentSlide: 0,
-      slides: [
-        {
-          image: require("@/assets/images/hero_slide.webp"),
-          width: "1920",
-          height: "560",
-          alt: "Стена изумрудного цвета",
-          title: "Краски",
-          description:
-            "Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!",
-        },
-        {
-          image: require("@/assets/images/hero_slide.webp"),
-          width: "1920",
-          height: "560",
-          alt: "Стена изумрудного цвета",
-          title: "Обои",
-          description: "Подчеркнут вашу индивидуальность.",
-        },
-        // другие слайды
-      ],
-      startX: 0, // начальная координата X при касании
-      endX: 0, // конечная координата X при отпускании
+  setup() {
+    const currentSlide = ref(0);
+
+    const slides = [
+      {
+        image: require("@/assets/images/hero_slide.webp"),
+        width: "1920",
+        height: "560",
+        alt: "Стена изумрудного цвета",
+        title: "Краски",
+        description:
+          "Идеально подходят для стен и других поверхностей. Найди свой идеальный цвет!",
+      },
+      {
+        image: require("@/assets/images/hero_slide.webp"),
+        width: "1920",
+        height: "560",
+        alt: "Стена изумрудного цвета",
+        title: "Обои",
+        description: "Подчеркнут вашу индивидуальность.",
+      },
+      // другие слайды
+    ];
+
+    const startX = ref(0); // начальная координата X при касании
+    const endX = ref(0); // конечная координата X при отпускании
+
+    const nextSlideHandler = () => {
+      currentSlide.value = nextSlide(currentSlide.value, slides.length);
     };
-  },
-  methods: {
-    nextSlide() {
-      this.currentSlide = nextSlide(this.currentSlide, this.slides.length);
-    },
-    prevSlide() {
-      this.currentSlide = prevSlide(this.currentSlide, this.slides.length);
-    },
-    goToSlide(index) {
-      this.currentSlide = goToSlide(index);
-    },
-    handleTouchStart(event) {
-      this.startX = event.touches[0].clientX; // сохраняем начальную точку касания
-    },
-    handleTouchMove(event) {
-      this.endX = event.touches[0].clientX; // обновляем текущую точку касания
-    },
-    handleTouchEnd() {
-      const swipeDistance = this.startX - this.endX;
+
+    const prevSlideHandler = () => {
+      currentSlide.value = prevSlide(currentSlide.value, slides.length);
+    };
+
+    const goToSlideHandler = (index) => {
+      currentSlide.value = goToSlide(index);
+    };
+
+    const handleTouchStart = (event) => {
+      startX.value = event.touches[0].clientX; // сохраняем начальную точку касания
+    };
+
+    const handleTouchMove = (event) => {
+      endX.value = event.touches[0].clientX; // обновляем текущую точку касания
+    };
+
+    const handleTouchEnd = () => {
+      const swipeDistance = startX.value - endX.value;
       if (swipeDistance > 50) {
         // свайп влево
-        this.nextSlide();
+        nextSlideHandler();
       } else if (swipeDistance < -50) {
         // свайп вправо
-        this.prevSlide();
+        prevSlideHandler();
       }
       // сброс значений после завершения свайпа
-      this.startX = 0;
-      this.endX = 0;
-    },
+      startX.value = 0;
+      endX.value = 0;
+    };
+
+    return {
+      currentSlide,
+      slides,
+      nextSlide: nextSlideHandler,
+      prevSlide: prevSlideHandler,
+      goToSlide: goToSlideHandler,
+      handleTouchStart,
+      handleTouchMove,
+      handleTouchEnd,
+    };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -143,7 +160,7 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
   color: #fff;
-  width: clamp(380px,10vw,472px);
+  width: clamp(380px, 10vw, 472px);
 }
 
 .hero__title {
