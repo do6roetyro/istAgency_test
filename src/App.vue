@@ -10,7 +10,7 @@
 import Header from "./components/Header/Header.vue";
 import Main from "./components/Main/Main.vue";
 import CartModal from "./components/Modal/CartModal.vue";
-import Footer from "./components/Footer/Footer.vue"
+import Footer from "./components/Footer/Footer.vue";
 import { ref } from "vue";
 
 export default {
@@ -40,9 +40,11 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 div {
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 </style>

@@ -160,7 +160,7 @@ export default {
     padding-right: 24px;
     position: absolute;
     width: 100vw;
-    height: 80dvh;
+    height: 100dvh;
     top: 0;
     z-index: 999;
     background-color: #ffffff;

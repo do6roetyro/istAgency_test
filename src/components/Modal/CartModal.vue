@@ -148,7 +148,7 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: end;
   z-index: 1000;
   max-width: 1920px;
@@ -203,7 +203,7 @@ export default {
   position: relative;
   background: #fff;
   padding: 30px;
-  /* width: 31.25vw; */
+ 
   width: 600px;
   min-width: 375px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -213,6 +213,7 @@ export default {
   @media (max-width: 601px) {
     padding-left: 16px;
     padding-right: 16px;
+     width: 100vw
   }
 }
 
@@ -283,10 +284,10 @@ export default {
 }
 
 .cart-modal__item-link {
- cursor: pointer;
- &:hover {
-  opacity: 0.8;
- }
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .cart-modal__item-image {
