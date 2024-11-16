@@ -85,6 +85,22 @@ a {
   background-color: #f2f2f2;
 }
 
+.cart-modal__item {
+  &--removed {
+    position: relative;
+    pointer-events: none;
+
+    .cart-item__icon-container {
+      cursor: pointer;
+      pointer-events: auto;
+
+      &:hover {
+        filter: brightness(0);
+      }
+    }
+  }
+}
+
 .page__container {
   min-width: 375px;
   max-width: 1920px;
