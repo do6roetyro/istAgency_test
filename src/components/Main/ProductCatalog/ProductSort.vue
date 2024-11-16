@@ -4,6 +4,7 @@
     div.sort__selected(@click="toggleDropdown") {{ currentSortLabel }}
     transition(name="fade")
       ul.sort__dropdown(v-if="isDropdownOpen")
+        li.sort__item(@click="changeSortOption('default')") По умолчанию
         li.sort__item(@click="changeSortOption('priceDesc')") Сначала дорогие
         li.sort__item(@click="changeSortOption('priceAsc')") Сначала недорогие
         li.sort__item(@click="changeSortOption('popular')") Сначала популярные
@@ -19,7 +20,7 @@ export default {
   setup() {
     const catalogStore = useCatalogStore();
     const isDropdownOpen = ref(false);
-    const currentSortLabel = ref("Сначала дорогие");
+    const currentSortLabel = ref("По умолчанию");
 
     const debouncedChangeSortOption = debounce((sortOption) => {
       catalogStore.updateSortOption(sortOption);
@@ -28,7 +29,7 @@ export default {
     const changeSortOption = (sortOption) => {
       isDropdownOpen.value = false;
       currentSortLabel.value = getSortLabel(sortOption);
-      debouncedChangeSortOption({ target: { value: sortOption } });
+      debouncedChangeSortOption(sortOption);
     };
 
     const getSortLabel = (sortOption) => {

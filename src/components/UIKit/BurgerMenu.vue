@@ -1,14 +1,16 @@
 <template lang="pug">
-    button.header__burger(:class="{ 'is-active': isDropdown }" @click="toggleDropdown")
-      span.visually-hidden Меню
-      .burger
-        span.burger__line
-        span.burger__line
-        span.burger__line
-    </template>
+  button.header__burger(:class="{ 'is-active': isDropdown }" @click="toggleDropdown")
+    span.visually-hidden Меню
+    .burger
+      span.burger__line
+      span.burger__line
+      span.burger__line
+</template>
 
 <script>
-export default {
+import { defineComponent, toRefs } from "vue";
+
+export default defineComponent({
   props: {
     isDropdown: {
       type: Boolean,
@@ -16,12 +18,19 @@ export default {
     },
   },
   emits: ["toggle-dropdown"],
-  methods: {
-    toggleDropdown() {
-      this.$emit("toggle-dropdown");
-    },
+  setup(props, { emit }) {
+    const { isDropdown } = toRefs(props);
+
+    const toggleDropdown = () => {
+      emit("toggle-dropdown");
+    };
+
+    return {
+      isDropdown,
+      toggleDropdown,
+    };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
