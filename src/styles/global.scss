@@ -107,3 +107,13 @@ a {
     padding: 24px;
   }
 }
+
+.no-scroll {
+  overflow: hidden !important;
+  position: fixed !important; // Зафиксировать страницу
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh; // Высота ограничивается окном
+  width: 100vw; // Ширина ограничивается окном
+}

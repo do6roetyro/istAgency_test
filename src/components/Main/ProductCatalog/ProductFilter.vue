@@ -1,8 +1,13 @@
 <template lang="pug">
   .filter
     .filter__header(@click="toggleMenu" v-if="isMobileView") Фильтры
+    .filter__overlay(v-if="isMenuOpen" @click="closeMenu")
     transition(name="slide-up")
-      .filter__list(v-if="!isMobileView || isMenuOpen")
+      .filter__list(
+          v-if="!isMobileView || isMenuOpen"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+        )
         label.filter__label(v-for="(label, filter) in filterLabels" :key="filter")
           ToggleSwitch(
             :modelValue="filters[filter]"
@@ -15,6 +20,7 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useCatalogStore } from "@/store/catalogStore";
 import { debounce } from "@/utilites/debounce";
+import { addNoScroll, removeNoScroll } from "@/utilites/noScroll";
 import ToggleSwitch from "@/components/UIKit/ToggleSwitch.vue";
 
 export default {
@@ -24,8 +30,10 @@ export default {
   setup() {
     const catalogStore = useCatalogStore();
     const filters = catalogStore.filters;
-    const isMenuOpen = ref(false); // Управление состоянием меню
-    const windowWidth = ref(window.innerWidth); // Отслеживание ширины окна
+    const isMenuOpen = ref(false);
+    const windowWidth = ref(window.innerWidth);
+
+    const startY = ref(0);
 
     const filterLabels = {
       isNew: "Новинки",
@@ -45,9 +53,30 @@ export default {
 
     const toggleMenu = () => {
       isMenuOpen.value = !isMenuOpen.value;
+      if (isMenuOpen.value) {
+        addNoScroll();
+      } else {
+        removeNoScroll();
+      }
     };
 
-    const isMobileView = computed(() => windowWidth.value <= 769); // Определение мобильного представления
+    const closeMenu = () => {
+      isMenuOpen.value = false;
+      removeNoScroll();
+    };
+
+    const handleTouchStart = (e) => {
+      startY.value = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      const endY = e.touches[0].clientY;
+      if (startY.value < endY - 50) {
+        closeMenu();
+      }
+    };
+
+    const isMobileView = computed(() => windowWidth.value <= 769);
 
     const updateWindowWidth = () => {
       windowWidth.value = window.innerWidth;
@@ -66,6 +95,9 @@ export default {
       filterLabels,
       toggleFilter,
       toggleMenu,
+      closeMenu,
+      handleTouchStart,
+      handleTouchMove,
       isMenuOpen,
       isMobileView,
     };
@@ -81,6 +113,16 @@ export default {
     position: absolute;
     top: 56px;
   }
+}
+
+.filter__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); // Затенение фона
+  z-index: 998;
 }
 
 .filter__header {
@@ -122,7 +164,8 @@ export default {
     top: 0;
     z-index: 999;
     background-color: #ffffff;
-    border-radius: 24px 0;
+    border-radius: 24px 24px 0 0;
+    min-width: 375px;
 
     &::before {
       content: "";

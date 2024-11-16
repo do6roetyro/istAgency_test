@@ -86,13 +86,22 @@ export default {
 .sort__selected {
   min-width: 280px;
   padding: 17px 24px;
-  border-radius: 4px;
   background-color: #fff;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 5px;
+  position: relative;
+  top: -3px;
+
+  @media (max-width: 426px) {
+    width: 250px;
+    min-width: auto;
+    padding: 9px 12px;
+    top: 2.8px;
+    right: -30px;
+  }
 
   &::after {
     content: "";
@@ -103,7 +112,7 @@ export default {
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #000; 
+    border-top: 6px solid #000;
   }
 }
 
