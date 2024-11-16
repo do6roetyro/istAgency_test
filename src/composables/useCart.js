@@ -14,7 +14,7 @@ export function useCart() {
 
   const decreaseQuantity = (productId) => {
     const cartItem = cartStore.cartItems[productId];
-    if (cartItem && !cartItem.removed) {
+    if (cartItem) {
       const currentQuantity = cartItem.quantity;
       cartStore.updateCartItemQuantity(productId, currentQuantity - 1);
     }
@@ -36,6 +36,10 @@ export function useCart() {
     cartStore.toggleRemovedStatus(productId);
   };
 
+  const deleteItem = (productId) => {
+    cartStore.removeFromCart(productId);
+  };
+
   const checkout = () => {
     alert("Заказ оформлен");
     cartStore.clearCart();
@@ -51,5 +55,6 @@ export function useCart() {
     removeItem,
     restoreItem,
     checkout,
+    deleteItem,
   };
 }

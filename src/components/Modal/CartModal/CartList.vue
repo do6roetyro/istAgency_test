@@ -41,10 +41,18 @@ export default defineComponent({
     "increase-quantity",
     "remove-item",
     "restore-item",
+    "delete-item",
   ],
   setup(props, { emit }) {
     const decreaseQuantity = (productId) => {
-      emit("decrease-quantity", productId);
+      const item = props.cartItems.find(
+        (cartItem) => cartItem.product.id === productId
+      );
+      if (item && item.quantity > 1) {
+        emit("decrease-quantity", productId);
+      } else if (item && item.quantity === 1) {
+        emit("delete-item", productId); // Полностью удаляем из списка
+      }
     };
 
     const increaseQuantity = (productId) => {

@@ -13,6 +13,7 @@
           @increase-quantity="increaseQuantity"
           @remove-item="removeItem"
           @restore-item="restoreItem"
+          @delete-item="deleteItem"
         )
         CartFooter(
           :cart-total-price="cartTotalPrice"
@@ -51,6 +52,7 @@ export default {
       increaseQuantity,
       removeItem,
       restoreItem,
+      deleteItem,
       checkout,
     } = useCart();
 
@@ -91,6 +93,7 @@ export default {
       increaseQuantity,
       removeItem,
       restoreItem,
+      deleteItem,
       checkout: modifiedCheckout,
     };
   },
